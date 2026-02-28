@@ -1,0 +1,2553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WLW</class>
+ <widget class="QMainWindow" name="WLW">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1532</width>
+    <height>836</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>0</y>
+      <width>1531</width>
+      <height>791</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/* 标签栏整体样式 */
+QTabBar {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* 未选中标签样式 */
+QTabBar::tab {
+    background: #e9ecef;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-bottom-color: #dee2e6;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 2px 4px;
+    margin-right: 2px;
+    min-width: 60px;
+}
+
+/* 选中标签样式 */
+QTabBar::tab:selected {
+    background: #ffffff;
+    /* color: #0d6efd; */
+    color: rgb(255, 0, 0);
+    border-color: #dee2e6;
+    border-bottom-color: #ffffff;
+    font-weight: bold;
+}
+
+/* 悬停标签样式 */
+QTabBar::tab:hover {
+    background: #dee2e6;
+}
+
+/* 内容面板样式 */
+QTabWidget::pane {
+    border: 1px solid #dee2e6;
+    border-top: none;
+    margin-top: -1px;
+    background: #ffffff;
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>4</number>
+    </property>
+    <property name="tabsClosable">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="stockInfo">
+     <attribute name="title">
+      <string>涨停板</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>1508</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索条件</string>
+      </property>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>交易日期</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="saleDateFrom">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>7</month>
+         <day>1</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>255</x>
+         <y>20</y>
+         <width>20</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>至</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="saleDateTo">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>7</month>
+         <day>1</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票No</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetNumberLineEdit" name="stockNo">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票名称</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="stockName">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>770</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>连板数</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="condition_lbs">
+       <property name="geometry">
+        <rect>
+         <x>820</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lianBanShu">
+       <property name="geometry">
+        <rect>
+         <x>880</x>
+         <y>20</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>960</x>
+         <y>20</y>
+         <width>60</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>涨停次数</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="condition_ztcs">
+       <property name="geometry">
+        <rect>
+         <x>1030</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="zhangTingCiShu">
+       <property name="geometry">
+        <rect>
+         <x>1090</x>
+         <y>20</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>1190</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>换手率</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="condition_hsl">
+       <property name="geometry">
+        <rect>
+         <x>1240</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="huanShouLv">
+       <property name="geometry">
+        <rect>
+         <x>1300</x>
+         <y>20</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>60</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>所属行业</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="suoShuHangYe">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>60</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>风险种类</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="stock_stockType">
+       <property name="geometry">
+        <rect>
+         <x>318</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>60</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>游资</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="youzi_comboBox">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>60</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>60</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>涨停主题</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_ztzt">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>60</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>770</x>
+         <y>60</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>最新价</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="condition_zxj">
+       <property name="geometry">
+        <rect>
+         <x>820</x>
+         <y>60</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_zxj">
+       <property name="geometry">
+        <rect>
+         <x>880</x>
+         <y>60</y>
+         <width>61</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>960</x>
+         <y>60</y>
+         <width>60</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>炸板次数</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="condtion_zbcs">
+       <property name="geometry">
+        <rect>
+         <x>1030</x>
+         <y>60</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="zhaBanCiShu">
+       <property name="geometry">
+        <rect>
+         <x>1090</x>
+         <y>60</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="stockSubmit">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>检索</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="stockClear">
+       <property name="geometry">
+        <rect>
+         <x>1310</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="stockDialog">
+       <property name="geometry">
+        <rect>
+         <x>1390</x>
+         <y>60</y>
+         <width>101</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>分类显示</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>110</y>
+        <width>1508</width>
+        <height>650</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索结果</string>
+      </property>
+      <widget class="QLabel" name="count_number">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>22</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>一共110件数据</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="showStockTable">
+       <property name="geometry">
+        <rect>
+         <x>3</x>
+         <y>55</y>
+         <width>1502</width>
+         <height>590</height>
+        </rect>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectItems</enum>
+       </property>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>25</number>
+       </attribute>
+       <attribute name="verticalHeaderMinimumSectionSize">
+        <number>23</number>
+       </attribute>
+      </widget>
+      <widget class="QLabel" name="plateStockNo">
+       <property name="geometry">
+        <rect>
+         <x>1330</x>
+         <y>22</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
+       </property>
+       <property name="text">
+        <string>第三页</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="nextStockPage">
+       <property name="geometry">
+        <rect>
+         <x>1420</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="upStockPage">
+       <property name="geometry">
+        <rect>
+         <x>1290</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="plateFund">
+     <attribute name="title">
+      <string>板块资金</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_8">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>355</y>
+        <width>1508</width>
+        <height>405</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索结果</string>
+      </property>
+      <widget class="QLabel" name="plateFund_count_number">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>一共110件数据</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="plateFund_showStockTable">
+       <property name="geometry">
+        <rect>
+         <x>3</x>
+         <y>50</y>
+         <width>1502</width>
+         <height>350</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>20</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255, 0, 0);
+font: 11pt &quot;楷体&quot;;</string>
+       </property>
+       <property name="text">
+        <string>B：净流入</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plateFundInput">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>20</y>
+         <width>151</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:red;
+font: 11pt &quot;楷体&quot;;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plateFundOutput">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>20</y>
+         <width>151</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:green;
+font: 11pt &quot;楷体&quot;;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="upPlateFundPage">
+       <property name="geometry">
+        <rect>
+         <x>1290</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plateFundPageNo">
+       <property name="geometry">
+        <rect>
+         <x>1330</x>
+         <y>22</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="nextPlateFundPage">
+       <property name="geometry">
+        <rect>
+         <x>1420</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_7">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>290</y>
+        <width>1508</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索条件</string>
+      </property>
+      <widget class="QLabel" name="label_31">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>交易日期</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="plateFundDate_From">
+       <property name="geometry">
+        <rect>
+         <x>85</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>28</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>255</x>
+         <y>20</y>
+         <width>20</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>至</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="plateFundDate_To">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>28</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="plateFundSubmit">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>检索</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="plateFundClear">
+       <property name="geometry">
+        <rect>
+         <x>1310</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="plateFund_Name">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>板块名称</string>
+       </property>
+      </widget>
+      <widget class="AutoSetNumberLineEdit" name="plateFund_No">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>板块代码</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="master_xianJia_n_3">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>20</y>
+         <width>100</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>主力净流入(净额)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="plateFund_zljlrje">
+       <property name="geometry">
+        <rect>
+         <x>810</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="plateFund_condition_zljlrje">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="plateFund_zljlrje_unit">
+       <property name="geometry">
+        <rect>
+         <x>900</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="plateFundActivate">
+       <property name="geometry">
+        <rect>
+         <x>1390</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>概念</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>1508</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QWidget" name="plateFundChartWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1507</width>
+         <height>280</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>1491</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="detailInfo"/>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="lncreaseFive">
+     <attribute name="title">
+      <string>涨幅(4%)以上</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>1508</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索条件</string>
+      </property>
+      <widget class="QLabel" name="label_28">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票No</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetNumberLineEdit" name="lncrease_stockNo">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_29">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票名称</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lncrease_stockName">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="master_hangYe_n_3">
+       <property name="geometry">
+        <rect>
+         <x>545</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>所属行业</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lncrease_hangYe">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>962</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>风险种类</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="lncrease_stockType">
+       <property name="geometry">
+        <rect>
+         <x>1030</x>
+         <y>20</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="lncrease_stockSubmit">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>检索</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="lncrease_stockClear">
+       <property name="geometry">
+        <rect>
+         <x>1310</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="master_xianJia_n_2">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>20</y>
+         <width>40</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>最新价</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="lncrease_condition_xj">
+       <property name="geometry">
+        <rect>
+         <x>800</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lncrease_xianJia">
+       <property name="geometry">
+        <rect>
+         <x>860</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="lncrease_condition_zj">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>20</y>
+         <width>120</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="master_xianJia_n_4">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>20</y>
+         <width>40</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>最近</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>110</y>
+        <width>1508</width>
+        <height>650</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索结果</string>
+      </property>
+      <widget class="QLabel" name="lncrease_count_number">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>22</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>一共110件数据</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="lncrease_showStockTable">
+       <property name="geometry">
+        <rect>
+         <x>3</x>
+         <y>54</y>
+         <width>1502</width>
+         <height>591</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="uplncreasePage">
+       <property name="geometry">
+        <rect>
+         <x>1290</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lncrease_pageNo">
+       <property name="geometry">
+        <rect>
+         <x>1330</x>
+         <y>22</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="nextlncreasePage">
+       <property name="geometry">
+        <rect>
+         <x>1420</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_zf_lncrease">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>22</y>
+         <width>30</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>涨幅</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="combox_sp_lncrease">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>22</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_sp_lncrease">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>22</y>
+         <width>30</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股价</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="combox_zf_lncrease">
+       <property name="geometry">
+        <rect>
+         <x>430</x>
+         <y>22</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_zf_lncrease_2">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>22</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>交易日期</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="combox_sale_lncrease">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>22</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="combox_plate_lncrease">
+       <property name="geometry">
+        <rect>
+         <x>815</x>
+         <y>22</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_sp_lncrease_2">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>22</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>上榜统计</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="waringStock">
+     <attribute name="title">
+      <string>风险个股</string>
+     </attribute>
+     <widget class="QGroupBox" name="waring_condition">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>1508</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索条件</string>
+      </property>
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>个股日期</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="waringDateFrom">
+       <property name="geometry">
+        <rect>
+         <x>85</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>29</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21">
+       <property name="geometry">
+        <rect>
+         <x>255</x>
+         <y>20</y>
+         <width>20</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>至</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="waringDateTo">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>29</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票No</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetNumberLineEdit" name="waring_stockNo">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票名称</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="waring_stockName">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="master_hangYe_n_2">
+       <property name="geometry">
+        <rect>
+         <x>775</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>所属行业</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="waring_suoShuHangYe">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>980</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>风险种类</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="waring_stockType">
+       <property name="geometry">
+        <rect>
+         <x>1050</x>
+         <y>20</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="waring_stockSubmit">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>检索</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="waring_stockClear">
+       <property name="geometry">
+        <rect>
+         <x>1310</x>
+         <y>60</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="waring_showData">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>110</y>
+        <width>1508</width>
+        <height>650</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索结果</string>
+      </property>
+      <widget class="QLabel" name="waring_count_number">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>22</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>一共110件数据</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="waring_showStockTable">
+       <property name="geometry">
+        <rect>
+         <x>3</x>
+         <y>54</y>
+         <width>1502</width>
+         <height>591</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="plateWaringNo">
+       <property name="geometry">
+        <rect>
+         <x>1330</x>
+         <y>22</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="nextWaringPage">
+       <property name="geometry">
+        <rect>
+         <x>1420</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="upWaringPage">
+       <property name="geometry">
+        <rect>
+         <x>1290</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="notices">
+     <attribute name="title">
+      <string>公告</string>
+     </attribute>
+     <widget class="QGroupBox" name="notice_search">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>1508</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索条件</string>
+      </property>
+      <widget class="QLabel" name="label_33">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>20</y>
+         <width>45</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票No</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetNumberLineEdit" name="notice_stockNo">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>600</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>股票名称</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="notice_stockName">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="notice_stockSubmit">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>检索</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="notice_stockClear">
+       <property name="geometry">
+        <rect>
+         <x>1310</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>公告日期</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="notice_saleDateFrom">
+       <property name="geometry">
+        <rect>
+         <x>85</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>30</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="notice_saleDateTo">
+       <property name="geometry">
+        <rect>
+         <x>275</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>28</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>20</y>
+         <width>20</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>至</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="notice_myself">
+       <property name="geometry">
+        <rect>
+         <x>1390</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>投资</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="notice_showData">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>70</y>
+        <width>1508</width>
+        <height>695</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索结果</string>
+      </property>
+      <widget class="QLabel" name="notice_count_number">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>22</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>一共110件数据</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="formLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>50</y>
+         <width>1481</width>
+         <height>631</height>
+        </rect>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="1">
+         <widget class="QScrollArea" name="scrollArea">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1215</width>
+             <height>627</height>
+            </rect>
+           </property>
+           <widget class="QStackedWidget" name="verticalStackedWidget">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1216</width>
+              <height>628</height>
+             </rect>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="pageOne">
+             <widget class="QTableView" name="tableView">
+              <property name="geometry">
+               <rect>
+                <x>-1</x>
+                <y>-1</y>
+                <width>1215</width>
+                <height>627</height>
+               </rect>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageTwo">
+             <widget class="QWidget" name="webWidget" native="true">
+              <property name="geometry">
+               <rect>
+                <x>1</x>
+                <y>1</y>
+                <width>1214</width>
+                <height>626</height>
+               </rect>
+              </property>
+              <widget class="QWidget" name="verticalLayoutWidget_2">
+               <property name="geometry">
+                <rect>
+                 <x>-1</x>
+                 <y>-1</y>
+                 <width>1221</width>
+                 <height>741</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout"/>
+              </widget>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="pageThree">
+             <widget class="QWidget" name="widget_2" native="true">
+              <property name="geometry">
+               <rect>
+                <x>1</x>
+                <y>1</y>
+                <width>1214</width>
+                <height>626</height>
+               </rect>
+              </property>
+              <widget class="QWidget" name="verticalLayoutWidget_3">
+               <property name="geometry">
+                <rect>
+                 <x>-1</x>
+                 <y>-1</y>
+                 <width>1221</width>
+                 <height>741</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="detailInfo_2"/>
+              </widget>
+             </widget>
+            </widget>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QTreeView" name="noticeCapitalTree">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>256</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTreeView {
+    border: 1px solid #000000; /* 设置边框宽度为1像素，样式为实线，颜色为黑色 */
+}
+
+QTreeView::item {
+    border: 1px solid #d9d9d9; /* 设置每个item的边框 */
+    padding: 2px; /* 可选：设置内边距 */
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <property name="midLineWidth">
+           <number>0</number>
+          </property>
+          <attribute name="headerMinimumSectionSize">
+           <number>24</number>
+          </attribute>
+          <attribute name="headerHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="headerStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1532</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>数据采集</string>
+    </property>
+    <widget class="QMenu" name="fenkaicaiji">
+     <property name="title">
+      <string>分开采集</string>
+     </property>
+     <addaction name="actionDailyLimit"/>
+     <addaction name="separator"/>
+     <addaction name="activePlateFund"/>
+     <addaction name="separator"/>
+     <addaction name="activeIncreaseFive"/>
+     <addaction name="separator"/>
+     <addaction name="actionStockHolding"/>
+     <addaction name="separator"/>
+     <addaction name="actionNotices"/>
+    </widget>
+    <addaction name="actionCrawlAll"/>
+    <addaction name="separator"/>
+    <addaction name="fenkaicaiji"/>
+    <addaction name="separator"/>
+    <addaction name="actionServerData"/>
+    <addaction name="separator"/>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionCrawlAll">
+   <property name="text">
+    <string>采集所有</string>
+   </property>
+  </action>
+  <action name="actionServerData">
+   <property name="text">
+    <string>风险个股</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>说明</string>
+   </property>
+  </action>
+  <action name="actionDailyLimit">
+   <property name="text">
+    <string>日涨停</string>
+   </property>
+  </action>
+  <action name="actionMainCapital">
+   <property name="text">
+    <string>主力资金</string>
+   </property>
+  </action>
+  <action name="activePlateFund">
+   <property name="text">
+    <string>板块资金</string>
+   </property>
+  </action>
+  <action name="activeIncreaseFive">
+   <property name="text">
+    <string>涨幅(4%)以上</string>
+   </property>
+  </action>
+  <action name="actionStockHolding">
+   <property name="text">
+    <string>机构持股</string>
+   </property>
+  </action>
+  <action name="actionNotices">
+   <property name="text">
+    <string>公告</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AutoSetDateEdit</class>
+   <extends>QDateEdit</extends>
+   <header location="global">WLW.StockBase.DateEditEx</header>
+  </customwidget>
+  <customwidget>
+   <class>AutoSetNumberLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">WLW.StockBase.AutoSetNumberLineEdit</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>saleDateFrom</tabstop>
+  <tabstop>saleDateTo</tabstop>
+  <tabstop>stockNo</tabstop>
+  <tabstop>stockName</tabstop>
+  <tabstop>condition_lbs</tabstop>
+  <tabstop>lianBanShu</tabstop>
+  <tabstop>condition_ztcs</tabstop>
+  <tabstop>zhangTingCiShu</tabstop>
+  <tabstop>condition_hsl</tabstop>
+  <tabstop>huanShouLv</tabstop>
+  <tabstop>suoShuHangYe</tabstop>
+  <tabstop>stock_stockType</tabstop>
+  <tabstop>youzi_comboBox</tabstop>
+  <tabstop>le_ztzt</tabstop>
+  <tabstop>condition_zxj</tabstop>
+  <tabstop>le_zxj</tabstop>
+  <tabstop>condtion_zbcs</tabstop>
+  <tabstop>zhaBanCiShu</tabstop>
+  <tabstop>stockSubmit</tabstop>
+  <tabstop>stockClear</tabstop>
+  <tabstop>stockDialog</tabstop>
+  <tabstop>showStockTable</tabstop>
+  <tabstop>waringDateFrom</tabstop>
+  <tabstop>waringDateTo</tabstop>
+  <tabstop>waring_stockNo</tabstop>
+  <tabstop>waring_stockName</tabstop>
+  <tabstop>waring_suoShuHangYe</tabstop>
+  <tabstop>waring_stockType</tabstop>
+  <tabstop>waring_stockSubmit</tabstop>
+  <tabstop>waring_stockClear</tabstop>
+  <tabstop>waring_showStockTable</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
