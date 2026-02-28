@@ -45,6 +45,7 @@ class LWLW():
         # 风险个股数据同步
         self.stock_info_question()
         # 登录用户
+
         self.passKey = passKey
         # exe文件夹
         self.parentPath = parent_dir
