@@ -1,0 +1,17 @@
+{
+  "database": {
+    "Host": "192.168.1.12",
+    "Port": 3306,
+    "User": "root",
+    "Password": "Lian+2040",
+    "Dbname": "idiom",
+    "Charset":"utf8mb4"
+  },
+  "hybk": {
+    "output_file_path": "D:\\learing\\Python\\output\\\\"
+  },
+  "logging": {
+    "log_dir": "D:\\learing\\Python\\output\\\\"
+  },
+  "stockNos": "300278,603686,600186,002658,002067,002261,600819"
+}

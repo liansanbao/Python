@@ -1,0 +1,15 @@
+JS逆向：
+npm init -y
+npm install webpack webpack-cli --save-dev
+
+package.json里追加下列代码：
+   "type": "module", # 不然module下面的js不能访问
+
+
+npm install query-string
+
+
+# js运行说明
+webpack-taobao.js    ---- 鼠标右击运行
+psTaobao25.js        ---- 加密算法，已经引入到webpack-taobao.js
+

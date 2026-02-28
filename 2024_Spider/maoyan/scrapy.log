@@ -1,0 +1,401 @@
+2025-04-10 14:05:07 [scrapy.utils.log] INFO: Scrapy 2.9.0 started (bot: maoyan)
+2025-04-10 14:05:07 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.11.7, cssselect 1.3.0, parsel 1.10.0, w3lib 2.3.1, Twisted 22.10.0, Python 3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.2, Platform Windows-10-10.0.26100-SP0
+2025-04-10 14:05:07 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'maoyan',
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy.log',
+ 'NEWSPIDER_MODULE': 'maoyan.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'SPIDER_MODULES': ['maoyan.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'}
+2025-04-10 14:05:07 [asyncio] DEBUG: Using selector: SelectSelector
+2025-04-10 14:05:07 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+2025-04-10 14:05:07 [scrapy.utils.log] DEBUG: Using asyncio event loop: asyncio.windows_events._WindowsSelectorEventLoop
+2025-04-10 14:05:07 [scrapy.extensions.telnet] INFO: Telnet Password: ef7713ed783e45ab
+2025-04-10 14:05:07 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2025-04-10 14:05:07 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'maoyan.middlewares.MaoyanDownloaderMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-04-10 14:05:07 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'maoyan.middlewares.MaoyanSpiderMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-04-10 14:05:07 [scrapy.middleware] INFO: Enabled item pipelines:
+['maoyan.pipelines.MaoyanPipeline', 'maoyan.pipelines.MaoyanMongoPipeline']
+2025-04-10 14:05:07 [scrapy.core.engine] INFO: Spider opened
+2025-04-10 14:05:07 [maoyan365] INFO: maoyan.json 文件已经打开了，可以写数据了。。。。。
+2025-04-10 14:05:07 [maoyan365] INFO: MongoDB已经打开了，可以写数据了。。。。。
+2025-04-10 14:05:07 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-04-10 14:05:07 [maoyan365] INFO: Spider opened: maoyan365
+2025-04-10 14:05:07 [maoyan365] INFO: Spider opened: maoyan365
+2025-04-10 14:05:07 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-04-10 14:05:08 [maoyan365] INFO: 生成的JS加密参数： {'method': 'get', 'timeStamp': 1744265108044, 'User-Agent': 'TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2', 'index': 179, 'channelId': 40009, 'sVersion': 2, 'key': 'A013F70DB97834C0A5492378BD76C53A', 'signKey': 'f748372778329703961d885e83a3ce53'}
+2025-04-10 14:05:08 [maoyan365] INFO: 生成的URL： https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5
+2025-04-10 14:05:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5> (referer: None)
+2025-04-10 14:05:08 [maoyan365] INFO: 已下载的字体文件：('https://s3plus.meituan.net/v1/mss_73a511b8f91f43d0bdae92584ea6330b/font/2a70c44b.woff', '2a70c44b.woff')
+2025-04-10 14:05:08 [fontTools.ttLib.ttFont] DEBUG: Reading 'cmap' table from disk
+2025-04-10 14:05:08 [fontTools.ttLib.ttFont] DEBUG: Decompiling 'cmap' table
+2025-04-10 14:05:08 [fontTools.ttLib.ttFont] DEBUG: Reading 'post' table from disk
+2025-04-10 14:05:08 [fontTools.ttLib.ttFont] DEBUG: Decompiling 'post' table
+2025-04-10 14:05:08 [fontTools.ttLib.ttFont] DEBUG: Reading 'maxp' table from disk
+2025-04-10 14:05:08 [fontTools.ttLib.ttFont] DEBUG: Decompiling 'maxp' table
+2025-04-10 14:05:08 [fontTools.ttLib.tables._p_o_s_t] WARNING: 2 extra bytes in post.stringData array
+2025-04-10 14:05:08 [maoyan365] INFO: 字体原生内容： {120: 'x', 57650: 'uniE132', 58755: 'uniE583', 59453: 'uniE83D', 59526: 'uniE886', 60322: 'uniEBA2', 60491: 'uniEC4B', 60815: 'uniED8F', 61530: 'uniF05A', 61803: 'uniF16B', 62015: 'uniF23F'}
+2025-04-10 14:05:08 [maoyan365] INFO: 字体处理结果：{'x': '', 'uniE132': '7', 'uniE583': '3', 'uniE83D': '5', 'uniE886': '2', 'uniEBA2': '0', 'uniEC4B': '9', 'uniED8F': '1', 'uniF05A': '8', 'uniF16B': '4', 'uniF23F': '6'}
+2025-04-10 14:05:08 [maoyan365] INFO: 综合票房字体加密: ['&#xe886;&#xeba2;&#xe83d;.&#xe886;&#xf16b;', '&#xec4b;&#xec4b;.&#xf05a;&#xe886;', '&#xec4b;&#xe886;.&#xe583;&#xe132;', '&#xe132;&#xf16b;.&#xed8f;&#xeba2;', '&#xe83d;&#xe132;.&#xe583;&#xed8f;', '&#xed8f;&#xf05a;.&#xf16b;&#xf23f;', '&#xed8f;&#xf23f;.&#xeba2;&#xec4b;', '&#xec4b;.&#xec4b;&#xf23f;', '&#xf05a;.&#xe886;&#xf05a;', '&#xe83d;.&#xec4b;&#xf16b;', '&#xe83d;.&#xf05a;&#xf16b;', '&#xe83d;.&#xf16b;&#xf23f;', '&#xf16b;.&#xe83d;&#xf05a;', '&#xe583;.&#xf23f;&#xf23f;', '&#xe886;.&#xe83d;&#xe132;', '&#xe886;.&#xe83d;&#xe83d;', '&#xe886;.&#xe583;&#xe83d;', '&#xed8f;.&#xf05a;&#xf05a;', '&#xed8f;.&#xe132;&#xe83d;', '&#xed8f;.&#xe83d;&#xec4b;', '&#xed8f;.&#xe886;&#xf23f;', '&#xeba2;.&#xf05a;&#xf16b;', '&#xeba2;.&#xf05a;&#xe583;', '&#xeba2;.&#xe132;&#xf05a;', '&#xeba2;.&#xe132;&#xe886;', '&#xeba2;.&#xf23f;&#xf16b;', '&#xeba2;.&#xe83d;&#xe132;', '&#xeba2;.&#xf16b;&#xe132;', '&#xeba2;.&#xf16b;&#xe83d;', '&#xeba2;.&#xe583;&#xf23f;', '&#xeba2;.&#xe583;&#xe83d;', '&#xeba2;.&#xe583;&#xe886;', '&#xeba2;.&#xe886;&#xec4b;', '&#xeba2;.&#xe886;&#xec4b;', '&#xeba2;.&#xe886;&#xf05a;', '&#xeba2;.&#xe886;&#xe132;', '&#xeba2;.&#xe886;&#xe886;', '&#xeba2;.&#xed8f;&#xf05a;', '&#xeba2;.&#xed8f;&#xf05a;', '&#xeba2;.&#xed8f;&#xf16b;', '&#xeba2;.&#xed8f;&#xe886;', '&#xeba2;.&#xed8f;&#xeba2;', '&#xeba2;.&#xeba2;&#xf05a;', '&#xeba2;.&#xeba2;&#xf23f;', '&#xeba2;.&#xeba2;&#xe83d;', '&#xeba2;.&#xeba2;&#xf16b;', '&#xeba2;.&#xeba2;&#xf16b;', '&#xeba2;.&#xeba2;&#xf16b;', '&#xeba2;.&#xeba2;&#xf16b;', '&#xeba2;.&#xeba2;&#xe583;', '&#xeba2;.&#xeba2;&#xe583;', '&#xeba2;.&#xeba2;&#xe583;', '&#xeba2;.&#xeba2;&#xe583;', '&#xeba2;.&#xeba2;&#xe886;', '&#xeba2;.&#xeba2;&#xe886;', '&#xeba2;.&#xeba2;&#xe886;', '&#xeba2;.&#xeba2;&#xed8f;', '&#xeba2;.&#xeba2;&#xed8f;', '&#xeba2;.&#xeba2;&#xeba2;', '&#xeba2;.&#xeba2;&#xeba2;']
+2025-04-10 14:05:08 [maoyan365] INFO: 综合票房字体解密: ['205.24', '99.82', '92.37', '74.10', '57.31', '18.46', '16.09', '9.96', '8.28', '5.94', '5.84', '5.46', '4.58', '3.66', '2.57', '2.55', '2.35', '1.88', '1.75', '1.59', '1.26', '0.84', '0.83', '0.78', '0.72', '0.64', '0.57', '0.47', '0.45', '0.36', '0.35', '0.32', '0.29', '0.29', '0.28', '0.27', '0.22', '0.18', '0.18', '0.14', '0.12', '0.10', '0.08', '0.06', '0.05', '0.04', '0.04', '0.04', '0.04', '0.03', '0.03', '0.03', '0.03', '0.02', '0.02', '0.02', '0.01', '0.01', '0.00', '0.00']
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '向阳·花', '综合票房': '205.24万', '票房占比': '32.5%', '排片场次': 81636}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '向阳·花', '综合票房': '205.24万', '票房占比': '32.5%', '排片场次': 81636}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '32.5%', 'movieName': '向阳·花', 'num': '205.24万', 'showCount': 81636}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '不说话的爱', '综合票房': '99.82万', '票房占比': '15.8%', '排片场次': 58509}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '不说话的爱', '综合票房': '99.82万', '票房占比': '15.8%', '排片场次': 58509}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '15.8%', 'movieName': '不说话的爱', 'num': '99.82万', 'showCount': 58509}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '哪吒之魔童闹海', '综合票房': '92.37万', '票房占比': '14.6%', '排片场次': 48755}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '哪吒之魔童闹海', '综合票房': '92.37万', '票房占比': '14.6%', '排片场次': 48755}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '14.6%',
+ 'movieName': '哪吒之魔童闹海',
+ 'num': '92.37万',
+ 'showCount': 48755}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '我的世界大电影', '综合票房': '74.10万', '票房占比': '11.7%', '排片场次': 63204}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '我的世界大电影', '综合票房': '74.10万', '票房占比': '11.7%', '排片场次': 63204}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '11.7%',
+ 'movieName': '我的世界大电影',
+ 'num': '74.10万',
+ 'showCount': 63204}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '猎狐·行动', '综合票房': '57.31万', '票房占比': '9.1%', '排片场次': 35542}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '猎狐·行动', '综合票房': '57.31万', '票房占比': '9.1%', '排片场次': 35542}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '9.1%', 'movieName': '猎狐·行动', 'num': '57.31万', 'showCount': 35542}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '热烈', '综合票房': '18.46万', '票房占比': '2.9%', '排片场次': 5818}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '热烈', '综合票房': '18.46万', '票房占比': '2.9%', '排片场次': 5818}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '2.9%', 'movieName': '热烈', 'num': '18.46万', 'showCount': 5818}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '机动战士高达：跨时之战', '综合票房': '16.09万', '票房占比': '2.5%', '排片场次': 14533}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '机动战士高达：跨时之战', '综合票房': '16.09万', '票房占比': '2.5%', '排片场次': 14533}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '2.5%',
+ 'movieName': '机动战士高达：跨时之战',
+ 'num': '16.09万',
+ 'showCount': 14533}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '制暴：无限杀机', '综合票房': '9.96万', '票房占比': '1.5%', '排片场次': 8393}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '制暴：无限杀机', '综合票房': '9.96万', '票房占比': '1.5%', '排片场次': 8393}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '1.5%', 'movieName': '制暴：无限杀机', 'num': '9.96万', 'showCount': 8393}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '唐探1900', '综合票房': '8.28万', '票房占比': '1.3%', '排片场次': 6767}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '唐探1900', '综合票房': '8.28万', '票房占比': '1.3%', '排片场次': 6767}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '1.3%', 'movieName': '唐探1900', 'num': '8.28万', 'showCount': 6767}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '阳光照耀青春里', '综合票房': '5.94万', '票房占比': '0.9%', '排片场次': 10494}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '阳光照耀青春里', '综合票房': '5.94万', '票房占比': '0.9%', '排片场次': 10494}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.9%', 'movieName': '阳光照耀青春里', 'num': '5.94万', 'showCount': 10494}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '追幸福的人', '综合票房': '5.84万', '票房占比': '0.9%', '排片场次': 42}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '追幸福的人', '综合票房': '5.84万', '票房占比': '0.9%', '排片场次': 42}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.9%', 'movieName': '追幸福的人', 'num': '5.84万', 'showCount': 42}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '射雕英雄传：侠之大者', '综合票房': '5.46万', '票房占比': '0.8%', '排片场次': 568}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '射雕英雄传：侠之大者', '综合票房': '5.46万', '票房占比': '0.8%', '排片场次': 568}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.8%', 'movieName': '射雕英雄传：侠之大者', 'num': '5.46万', 'showCount': 568}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '还有明天', '综合票房': '4.58万', '票房占比': '0.7%', '排片场次': 789}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '还有明天', '综合票房': '4.58万', '票房占比': '0.7%', '排片场次': 789}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.7%', 'movieName': '还有明天', 'num': '4.58万', 'showCount': 789}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '速度与激情7', '综合票房': '3.66万', '票房占比': '0.5%', '排片场次': 391}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '速度与激情7', '综合票房': '3.66万', '票房占比': '0.5%', '排片场次': 391}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.5%', 'movieName': '速度与激情7', 'num': '3.66万', 'showCount': 391}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '东四十条', '综合票房': '2.57万', '票房占比': '0.4%', '排片场次': 5680}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '东四十条', '综合票房': '2.57万', '票房占比': '0.4%', '排片场次': 5680}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.4%', 'movieName': '东四十条', 'num': '2.57万', 'showCount': 5680}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '怒水西流', '综合票房': '2.55万', '票房占比': '0.4%', '排片场次': 6098}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '怒水西流', '综合票房': '2.55万', '票房占比': '0.4%', '排片场次': 6098}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.4%', 'movieName': '怒水西流', 'num': '2.55万', 'showCount': 6098}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '倩女幽魂', '综合票房': '2.35万', '票房占比': '0.3%', '排片场次': 1937}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '倩女幽魂', '综合票房': '2.35万', '票房占比': '0.3%', '排片场次': 1937}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.3%', 'movieName': '倩女幽魂', 'num': '2.35万', 'showCount': 1937}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '猫猫的奇幻漂流', '综合票房': '1.88万', '票房占比': '0.2%', '排片场次': 953}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '猫猫的奇幻漂流', '综合票房': '1.88万', '票房占比': '0.2%', '排片场次': 953}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.2%', 'movieName': '猫猫的奇幻漂流', 'num': '1.88万', 'showCount': 953}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '打铁花行动', '综合票房': '1.75万', '票房占比': '0.2%', '排片场次': 26}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '打铁花行动', '综合票房': '1.75万', '票房占比': '0.2%', '排片场次': 26}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.2%', 'movieName': '打铁花行动', 'num': '1.75万', 'showCount': 26}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '潮', '综合票房': '1.59万', '票房占比': '0.2%', '排片场次': 32}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '潮', '综合票房': '1.59万', '票房占比': '0.2%', '排片场次': 32}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.2%', 'movieName': '潮', 'num': '1.59万', 'showCount': 32}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '破·地狱：感恩特别版', '综合票房': '1.26万', '票房占比': '0.2%', '排片场次': 129}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '破·地狱：感恩特别版', '综合票房': '1.26万', '票房占比': '0.2%', '排片场次': 129}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.2%', 'movieName': '破·地狱：感恩特别版', 'num': '1.26万', 'showCount': 129}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '援藏日记', '综合票房': '0.84万', '票房占比': '0.1%', '排片场次': 178}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '援藏日记', '综合票房': '0.84万', '票房占比': '0.1%', '排片场次': 178}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.1%', 'movieName': '援藏日记', 'num': '0.84万', 'showCount': 178}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '向阳花开', '综合票房': '0.83万', '票房占比': '0.1%', '排片场次': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '向阳花开', '综合票房': '0.83万', '票房占比': '0.1%', '排片场次': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.1%', 'movieName': '向阳花开', 'num': '0.83万', 'showCount': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '新龙门客栈（舞台纪录电影·越剧）', '综合票房': '0.78万', '票房占比': '0.1%', '排片场次': 446}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '新龙门客栈（舞台纪录电影·越剧）', '综合票房': '0.78万', '票房占比': '0.1%', '排片场次': 446}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.1%',
+ 'movieName': '新龙门客栈（舞台纪录电影·越剧）',
+ 'num': '0.78万',
+ 'showCount': 446}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '疾速追杀4', '综合票房': '0.72万', '票房占比': '0.1%', '排片场次': 626}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '疾速追杀4', '综合票房': '0.72万', '票房占比': '0.1%', '排片场次': 626}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.1%', 'movieName': '疾速追杀4', 'num': '0.72万', 'showCount': 626}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '花样年华', '综合票房': '0.64万', '票房占比': '0.1%', '排片场次': 189}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '花样年华', '综合票房': '0.64万', '票房占比': '0.1%', '排片场次': 189}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '0.1%', 'movieName': '花样年华', 'num': '0.64万', 'showCount': 189}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '熊出没·重启未来', '综合票房': '0.57万', '票房占比': '<0.1%', '排片场次': 1249}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '熊出没·重启未来', '综合票房': '0.57万', '票房占比': '<0.1%', '排片场次': 1249}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '熊出没·重启未来', 'num': '0.57万', 'showCount': 1249}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '您的声音', '综合票房': '0.47万', '票房占比': '<0.1%', '排片场次': 30}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '您的声音', '综合票房': '0.47万', '票房占比': '<0.1%', '排片场次': 30}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '您的声音', 'num': '0.47万', 'showCount': 30}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '我会好好的', '综合票房': '0.45万', '票房占比': '<0.1%', '排片场次': 920}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '我会好好的', '综合票房': '0.45万', '票房占比': '<0.1%', '排片场次': 920}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '我会好好的', 'num': '0.45万', 'showCount': 920}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '大突围', '综合票房': '0.36万', '票房占比': '<0.1%', '排片场次': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '大突围', '综合票房': '0.36万', '票房占比': '<0.1%', '排片场次': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '大突围', 'num': '0.36万', 'showCount': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '午时三刻', '综合票房': '0.35万', '票房占比': '<0.1%', '排片场次': 464}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '午时三刻', '综合票房': '0.35万', '票房占比': '<0.1%', '排片场次': 464}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '午时三刻', 'num': '0.35万', 'showCount': 464}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '唤醒者', '综合票房': '0.32万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '唤醒者', '综合票房': '0.32万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '唤醒者', 'num': '0.32万', 'showCount': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '攀枝花红了', '综合票房': '0.29万', '票房占比': '<0.1%', '排片场次': 7}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '攀枝花红了', '综合票房': '0.29万', '票房占比': '<0.1%', '排片场次': 7}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '攀枝花红了', 'num': '0.29万', 'showCount': 7}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '天堂旅行团', '综合票房': '0.29万', '票房占比': '<0.1%', '排片场次': 826}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '天堂旅行团', '综合票房': '0.29万', '票房占比': '<0.1%', '排片场次': 826}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '天堂旅行团', 'num': '0.29万', 'showCount': 826}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '浴血困牛山', '综合票房': '0.28万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '浴血困牛山', '综合票房': '0.28万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '浴血困牛山', 'num': '0.28万', 'showCount': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '伟大征程', '综合票房': '0.27万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '伟大征程', '综合票房': '0.27万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '伟大征程', 'num': '0.27万', 'showCount': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '白雪公主', '综合票房': '0.22万', '票房占比': '<0.1%', '排片场次': 208}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '白雪公主', '综合票房': '0.22万', '票房占比': '<0.1%', '排片场次': 208}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '白雪公主', 'num': '0.22万', 'showCount': 208}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '诡才之道', '综合票房': '0.18万', '票房占比': '<0.1%', '排片场次': 215}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '诡才之道', '综合票房': '0.18万', '票房占比': '<0.1%', '排片场次': 215}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '诡才之道', 'num': '0.18万', 'showCount': 215}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '夜半凶宅', '综合票房': '0.18万', '票房占比': '<0.1%', '排片场次': 776}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '夜半凶宅', '综合票房': '0.18万', '票房占比': '<0.1%', '排片场次': 776}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '夜半凶宅', 'num': '0.18万', 'showCount': 776}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '完美的日子', '综合票房': '0.14万', '票房占比': '<0.1%', '排片场次': 13}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '完美的日子', '综合票房': '0.14万', '票房占比': '<0.1%', '排片场次': 13}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '完美的日子', 'num': '0.14万', 'showCount': 13}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '不完美逃脱', '综合票房': '0.12万', '票房占比': '<0.1%', '排片场次': 359}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '不完美逃脱', '综合票房': '0.12万', '票房占比': '<0.1%', '排片场次': 359}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '不完美逃脱', 'num': '0.12万', 'showCount': 359}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '谍网追凶', '综合票房': '0.10万', '票房占比': '<0.1%', '排片场次': 88}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '谍网追凶', '综合票房': '0.10万', '票房占比': '<0.1%', '排片场次': 88}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '谍网追凶', 'num': '0.10万', 'showCount': 88}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '去唱卡拉OK吧！', '综合票房': '0.08万', '票房占比': '<0.1%', '排片场次': 12}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '去唱卡拉OK吧！', '综合票房': '0.08万', '票房占比': '<0.1%', '排片场次': 12}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '去唱卡拉OK吧！', 'num': '0.08万', 'showCount': 12}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '歪打正好', '综合票房': '0.06万', '票房占比': '<0.1%', '排片场次': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '歪打正好', '综合票房': '0.06万', '票房占比': '<0.1%', '排片场次': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '歪打正好', 'num': '0.06万', 'showCount': 4}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '真爱营业', '综合票房': '0.05万', '票房占比': '<0.1%', '排片场次': 155}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '真爱营业', '综合票房': '0.05万', '票房占比': '<0.1%', '排片场次': 155}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '真爱营业', 'num': '0.05万', 'showCount': 155}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '你的颜色', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 47}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '你的颜色', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 47}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '你的颜色', 'num': '0.04万', 'showCount': 47}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '海绵宝宝：皮老板大电影', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 237}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '海绵宝宝：皮老板大电影', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 237}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%',
+ 'movieName': '海绵宝宝：皮老板大电影',
+ 'num': '0.04万',
+ 'showCount': 237}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '爱情神话', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '爱情神话', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '爱情神话', 'num': '0.04万', 'showCount': 1}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '周末狂飙', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 67}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '周末狂飙', '综合票房': '0.04万', '票房占比': '<0.1%', '排片场次': 67}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '周末狂飙', 'num': '0.04万', 'showCount': 67}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '特别的你', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 8}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '特别的你', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 8}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '特别的你', 'num': '0.03万', 'showCount': 8}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '久别·重逢', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 37}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '久别·重逢', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 37}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '久别·重逢', 'num': '0.03万', 'showCount': 37}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '再见，也许不再见', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 21}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '再见，也许不再见', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 21}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '再见，也许不再见', 'num': '0.03万', 'showCount': 21}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '康熙与路易十四', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 3}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '康熙与路易十四', '综合票房': '0.03万', '票房占比': '<0.1%', '排片场次': 3}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '康熙与路易十四', 'num': '0.03万', 'showCount': 3}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '想飞的女孩', '综合票房': '0.02万', '票房占比': '<0.1%', '排片场次': 48}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '想飞的女孩', '综合票房': '0.02万', '票房占比': '<0.1%', '排片场次': 48}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '想飞的女孩', 'num': '0.02万', 'showCount': 48}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '多幸运遇见你', '综合票房': '0.02万', '票房占比': '<0.1%', '排片场次': 122}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '多幸运遇见你', '综合票房': '0.02万', '票房占比': '<0.1%', '排片场次': 122}
+2025-04-10 14:05:08 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '多幸运遇见你', 'num': '0.02万', 'showCount': 122}
+2025-04-10 14:05:08 [maoyan365] INFO: DoubanPipeline process:{'影片': '武替道', '综合票房': '0.02万', '票房占比': '<0.1%', '排片场次': 5}
+2025-04-10 14:05:08 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '武替道', '综合票房': '0.02万', '票房占比': '<0.1%', '排片场次': 5}
+2025-04-10 14:05:09 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '武替道', 'num': '0.02万', 'showCount': 5}
+2025-04-10 14:05:09 [maoyan365] INFO: DoubanPipeline process:{'影片': '非标准恋爱', '综合票房': '0.01万', '票房占比': '<0.1%', '排片场次': 70}
+2025-04-10 14:05:09 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '非标准恋爱', '综合票房': '0.01万', '票房占比': '<0.1%', '排片场次': 70}
+2025-04-10 14:05:09 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '非标准恋爱', 'num': '0.01万', 'showCount': 70}
+2025-04-10 14:05:09 [maoyan365] INFO: DoubanPipeline process:{'影片': '美国队长4', '综合票房': '0.01万', '票房占比': '<0.1%', '排片场次': 35}
+2025-04-10 14:05:09 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '美国队长4', '综合票房': '0.01万', '票房占比': '<0.1%', '排片场次': 35}
+2025-04-10 14:05:09 [maoyan365] INFO: 更新件数： 1
+2025-04-10 14:05:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '美国队长4', 'num': '0.01万', 'showCount': 35}
+2025-04-10 14:05:09 [maoyan365] INFO: DoubanPipeline process:{'影片': '出走的决心', '综合票房': '0.00万', '票房占比': '<0.1%', '排片场次': 3}
+2025-04-10 14:05:09 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '出走的决心', '综合票房': '0.00万', '票房占比': '<0.1%', '排片场次': 3}
+2025-04-10 14:05:09 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '出走的决心', 'num': '0.00万', 'showCount': 3}
+2025-04-10 14:05:09 [maoyan365] INFO: DoubanPipeline process:{'影片': '天龙押运', '综合票房': '0.00万', '票房占比': '<0.1%', '排片场次': 2}
+2025-04-10 14:05:09 [maoyan365] INFO: MaoyanMongoPipeline process:{'影片': '天龙押运', '综合票房': '0.00万', '票房占比': '<0.1%', '排片场次': 2}
+2025-04-10 14:05:09 [maoyan365] INFO: 更新件数： 0
+2025-04-10 14:05:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://piaofang.maoyan.com/dashboard-ajax?orderType=0&uuid=195d664f88dc8-0898cbbf1fec4c-26011d51-1fa400-195d664f88dc8&timeStamp=1744265108044&User-Agent=TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyOC4wLjAuMCBTYWZhcmkvNTM3LjM2&index=179&channelId=40009&sVersion=2&signKey=f748372778329703961d885e83a3ce53&WuKongReady=h5>
+{'boxRate': '<0.1%', 'movieName': '天龙押运', 'num': '0.00万', 'showCount': 2}
+2025-04-10 14:05:09 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-04-10 14:05:09 [maoyan365] INFO: MongoDB关闭了。
+2025-04-10 14:05:09 [maoyan365] INFO: close_spider <_io.TextIOWrapper name='maoyan.json' mode='w' encoding='utf-8'>文件关闭了。
+2025-04-10 14:05:09 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 663,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 41655,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 1.024806,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 4, 10, 6, 5, 9, 21237),
+ 'item_scraped_count': 60,
+ 'log_count/DEBUG': 70,
+ 'log_count/INFO': 203,
+ 'log_count/WARNING': 1,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2025, 4, 10, 6, 5, 7, 996431)}
+2025-04-10 14:05:09 [scrapy.core.engine] INFO: Spider closed (finished)
