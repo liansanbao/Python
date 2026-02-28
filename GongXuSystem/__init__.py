@@ -1,0 +1,1 @@
+from GongXuSystem.MainWindow import MainWindow
