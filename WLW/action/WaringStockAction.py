@@ -154,8 +154,9 @@ def AddWaringClickedStockSubmit(windows, formWigdet):
 def editWaringStockTable(windows, formWigdet):
     # 风险个股Tab--数据绑定
     getWaringStockData(windows, formWigdet)
-    # 风险个股Tab--数据显示设定
-    setingWaringStockTable(formWigdet.waring_showStockTable)
+    if windows.showWaringStockData:
+        # 风险个股Tab--数据显示设定
+        setingWaringStockTable(formWigdet.waring_showStockTable)
 
 # 风险个股Tab--数据显示设定
 def setingWaringStockTable(waringTable):

@@ -293,8 +293,10 @@ def AddClickedStockSubmit(windows, formWidget):
 def editStockTable(windows, formWidget):
     # 涨停板Tab--数据绑定
     getStockData(windows, formWidget)
-    # 涨停板Tab--数据显示设定
-    setingStockTable(formWidget.showStockTable)
+    # 设定项目值显示
+    if windows.showStockData:
+        # 涨停板Tab--数据显示设定
+        setingStockTable(formWidget.showStockTable)
 
 # 涨停板Tab--数据绑定
 def getStockData(windows, formWidget):

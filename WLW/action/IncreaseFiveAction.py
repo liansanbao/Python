@@ -137,8 +137,9 @@ def AddClickedIncreaseStockSubmit(windows, formWigdet):
 def editIncreaseFiveTable(windows, formWigdet):
     # 涨幅(5%)以上Tab--数据绑定
     getIncreaseFiveData(windows, formWigdet)
-    # 涨幅(5%)以上Tab--数据显示设定
-    setingTable(formWigdet.lncrease_showStockTable)
+    if windows.reportData:
+        # 涨幅(5%)以上Tab--数据显示设定
+        setingTable(formWigdet.lncrease_showStockTable)
 
 # 数据处理
 def editIncreaseFiveData(showIncreaseFiveData, windows, formWigdet):

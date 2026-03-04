@@ -64,9 +64,12 @@ def addaAtionHelp(windows):
       5、公告
         A股市场个股公告。
 
+      6、AI诊股
+        有检索的数据加想问的问题，让千问大模型来辅助你选股。
+
   有任何问题可以联系我。邮箱：981037985@qq.com 
 
-Version:3.0
+Version:4.0
     """
     msg = QMessageBox()
     msg.setIcon(QMessageBox.Icon.NoIcon)

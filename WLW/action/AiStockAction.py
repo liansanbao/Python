@@ -365,21 +365,13 @@ def editAiStockTable(windows, formWidget):
     # 涨停板
     if currentIndex == 0:
         getStockData(windows, formWidget, currentIndex, aiDateFrom, aiDateTo, aiStockNo, aiStockName)
-        # 涨停板Tab--数据显示设定
-        StockInfoAction.setingStockTable(formWidget.aiStock_Table)
     # 板块
     elif currentIndex == 1:
         getPlateFundData(windows, formWidget, 'S', '1', currentIndex, aiDateFrom, aiDateTo, aiStockNo, aiStockName)
-        # 板块--数据显示设定
-        PlateFundAction.setingPlateFundTable(formWidget.aiStock_Table)
     elif currentIndex == 2:
         getPlateFundData(windows, formWidget, 'S', '2', currentIndex, aiDateFrom, aiDateTo, aiStockNo, aiStockName)
-        # 概念--数据显示设定
-        PlateFundAction.setingPlateFundTable(formWidget.aiStock_Table)
     elif currentIndex == 3:
         getIncreaseFiveData(windows, formWidget, currentIndex, aiDateFrom, aiDateTo, aiStockNo, aiStockName)
-        # 涨幅(4%)以上--数据显示设定
-        IncreaseFiveAction.setingTable(formWidget.aiStock_Table)
 
 # 分页处理
 def get_page(cached_data, page: int, page_size: int) -> Dict[str, Any]:
@@ -419,6 +411,14 @@ def getIncreaseFiveData(windows, formWigdet, indexNo, hangQingDateFrom, hangQing
         data = get_page(windows.showAiStockData, windows.current_AiStockPage, 11)
         # 数据显示处理
         showTableData(data, windows, formWigdet, indexNo, 21, headerIncreaseTitles, showIncreaseHeaderLables, IncreaseCustomProxyModel())
+        # 涨幅(4%)以上--数据显示设定
+        IncreaseFiveAction.setingTable(formWigdet.aiStock_Table)
+    else:
+        # 分页按钮不显示
+        formWigdet.aiStock_upPlate.setVisible(False)
+        formWigdet.aiStock_nextPlate.setVisible(False)
+        # 页码格式化
+        formWigdet.aiStock_PageNo.setText('')
 
 # 数据处理
 def editAiIncreaseFiveData(showIncreaseFiveData, windows, formWigdet):
@@ -463,6 +463,14 @@ def getPlateFundData(windows, formWigdet, activateType, hyType, indexNo, hangQin
         data = get_page(windows.showAiStockData, windows.current_AiStockPage, 11)
         # 数据显示处理
         showTableData(data, windows, formWigdet, indexNo, 18, headerPlateFundTitles, showPlateFundHeaderLables, PlateFundCustomProxyModel())
+        # 概念--数据显示设定
+        PlateFundAction.setingPlateFundTable(formWigdet.aiStock_Table)
+    else:
+        # 分页按钮不显示
+        formWigdet.aiStock_upPlate.setVisible(False)
+        formWigdet.aiStock_nextPlate.setVisible(False)
+        # 页码格式化
+        formWigdet.aiStock_PageNo.setText('')
 
 # 涨停板--数据绑定
 def getStockData(windows, formWidget, indexNo, saleDayFrom, saleDayTo, stockNo, stockName):
@@ -490,6 +498,14 @@ def getStockData(windows, formWidget, indexNo, saleDayFrom, saleDayTo, stockNo, 
         data = get_page(windows.showAiStockData, windows.current_AiStockPage, 11)
         # 数据显示处理
         showTableData(data, windows, formWidget, indexNo,19, headerDailylimitTitles, showDailylimitHeaderLables, StockCustomProxyModel())
+        # 涨停板Tab--数据显示设定
+        StockInfoAction.setingStockTable(formWidget.aiStock_Table)
+    else:
+        # 分页按钮不显示
+        formWidget.aiStock_upPlate.setVisible(False)
+        formWidget.aiStock_nextPlate.setVisible(False)
+        # 页码格式化
+        formWidget.aiStock_PageNo.setText('')
 
 # 数据显示处理
 def showTableData(data, windows, formWigdet, indexNo, simCount, headerTitles, showHeaderLables, customSortmodel):
