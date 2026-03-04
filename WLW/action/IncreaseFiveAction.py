@@ -274,7 +274,6 @@ def on_combox_plate_selection_change(itemText, formWigdet, windows):
 # 数据二次编辑
 def reportDataAgin(windows, formWigdet):
     windows.reportData = editIncreaseFiveDataAgin(windows)
-
     # 总件数format
     formWigdet.lncrease_count_number.setText(f'一共 {len(windows.reportData)} 件数据')
     # 页码初始化
@@ -422,14 +421,41 @@ def getIncreaseFiveData(windows, formWigdet):
     # 数据处理
     windows.reportData = editIncreaseFiveData(windows.showIncreaseFiveData, windows, formWigdet)
     windows.reportDataBody = copy.deepcopy(windows.reportData)
+    showCombox = False
+    count = 0
+    if windows.reportData:
+        count = len(windows.reportData)
+        # 页码初始化
+        windows.current_IncreaseFivePage = 1
+        # 分页处理
+        data = get_page(windows.reportData, windows.current_IncreaseFivePage, 20)
+        # 数据显示处理
+        showTableData(data, windows, formWigdet)
+        showCombox = True
+    else:
+        # windows.increaseFive.clear()  # 清除所有数据及表头
+        # 分页按钮不显示
+        formWigdet.uplncreasePage.setVisible(False)
+        formWigdet.nextlncreasePage.setVisible(False)
+        # 页码格式化
+        formWigdet.lncrease_pageNo.setText('')
+
     # 总件数format
-    formWigdet.lncrease_count_number.setText(f'一共 {len(windows.reportData)} 件数据')
-    # 页码初始化
-    windows.current_IncreaseFivePage = 1
-    # 分页处理
-    data = get_page(windows.reportData, windows.current_IncreaseFivePage, 20)
-    # 数据显示处理
-    showTableData(data, windows, formWigdet)
+    formWigdet.lncrease_count_number.setText(f'一共 {count} 件数据')
+    # data 不显示
+    formWigdet.lncrease_showStockTable.setVisible(showCombox)
+    # 交易日期
+    formWigdet.combox_sale_lncrease.setVisible(showCombox)
+    formWigdet.label_zf_lncrease_2.setVisible(showCombox)
+    # 涨幅
+    formWigdet.combox_zf_lncrease.setVisible(showCombox)
+    formWigdet.label_zf_lncrease.setVisible(showCombox)
+    # 股价
+    formWigdet.combox_sp_lncrease.setVisible(showCombox)
+    formWigdet.label_sp_lncrease.setVisible(showCombox)
+    # 上榜统计
+    formWigdet.combox_plate_lncrease.setVisible(showCombox)
+    formWigdet.label_sp_lncrease_2.setVisible(showCombox)
 
 # 数据显示处理
 def showTableData(data, windows, formWigdet):

@@ -71,7 +71,7 @@ class Ui_WLW(object):
         self.label.setObjectName("label")
         self.saleDateFrom = AutoSetDateEdit(parent=self.groupBox)
         self.saleDateFrom.setGeometry(QtCore.QRect(90, 20, 160, 22))
-        self.saleDateFrom.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 7, 1), QtCore.QTime(0, 0, 0)))
+        self.saleDateFrom.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 28), QtCore.QTime(0, 0, 0)))
         self.saleDateFrom.setTime(QtCore.QTime(0, 0, 0))
         self.saleDateFrom.setObjectName("saleDateFrom")
         self.label_2 = QtWidgets.QLabel(parent=self.groupBox)
@@ -80,7 +80,7 @@ class Ui_WLW(object):
         self.label_2.setObjectName("label_2")
         self.saleDateTo = AutoSetDateEdit(parent=self.groupBox)
         self.saleDateTo.setGeometry(QtCore.QRect(280, 20, 160, 22))
-        self.saleDateTo.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 7, 1), QtCore.QTime(0, 0, 0)))
+        self.saleDateTo.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 28), QtCore.QTime(0, 0, 0)))
         self.saleDateTo.setTime(QtCore.QTime(0, 0, 0))
         self.saleDateTo.setObjectName("saleDateTo")
         self.label_3 = QtWidgets.QLabel(parent=self.groupBox)
@@ -339,7 +339,7 @@ class Ui_WLW(object):
         self.label_31.setObjectName("label_31")
         self.plateFundDate_From = AutoSetDateEdit(parent=self.groupBox_7)
         self.plateFundDate_From.setGeometry(QtCore.QRect(85, 20, 160, 22))
-        self.plateFundDate_From.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 28), QtCore.QTime(0, 0, 0)))
+        self.plateFundDate_From.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 25), QtCore.QTime(0, 0, 0)))
         self.plateFundDate_From.setTime(QtCore.QTime(0, 0, 0))
         self.plateFundDate_From.setObjectName("plateFundDate_From")
         self.label_32 = QtWidgets.QLabel(parent=self.groupBox_7)
@@ -348,7 +348,7 @@ class Ui_WLW(object):
         self.label_32.setObjectName("label_32")
         self.plateFundDate_To = AutoSetDateEdit(parent=self.groupBox_7)
         self.plateFundDate_To.setGeometry(QtCore.QRect(290, 20, 160, 22))
-        self.plateFundDate_To.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 28), QtCore.QTime(0, 0, 0)))
+        self.plateFundDate_To.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 25), QtCore.QTime(0, 0, 0)))
         self.plateFundDate_To.setTime(QtCore.QTime(0, 0, 0))
         self.plateFundDate_To.setObjectName("plateFundDate_To")
         self.plateFundSubmit = QtWidgets.QPushButton(parent=self.groupBox_7)
@@ -589,7 +589,7 @@ class Ui_WLW(object):
         self.label_20.setObjectName("label_20")
         self.waringDateFrom = AutoSetDateEdit(parent=self.waring_condition)
         self.waringDateFrom.setGeometry(QtCore.QRect(85, 20, 160, 22))
-        self.waringDateFrom.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 29), QtCore.QTime(0, 0, 0)))
+        self.waringDateFrom.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 26), QtCore.QTime(0, 0, 0)))
         self.waringDateFrom.setTime(QtCore.QTime(0, 0, 0))
         self.waringDateFrom.setObjectName("waringDateFrom")
         self.label_21 = QtWidgets.QLabel(parent=self.waring_condition)
@@ -598,7 +598,7 @@ class Ui_WLW(object):
         self.label_21.setObjectName("label_21")
         self.waringDateTo = AutoSetDateEdit(parent=self.waring_condition)
         self.waringDateTo.setGeometry(QtCore.QRect(280, 20, 160, 22))
-        self.waringDateTo.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 29), QtCore.QTime(0, 0, 0)))
+        self.waringDateTo.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 26), QtCore.QTime(0, 0, 0)))
         self.waringDateTo.setTime(QtCore.QTime(0, 0, 0))
         self.waringDateTo.setObjectName("waringDateTo")
         self.label_22 = QtWidgets.QLabel(parent=self.waring_condition)
@@ -756,12 +756,12 @@ class Ui_WLW(object):
         self.label_15.setObjectName("label_15")
         self.notice_saleDateFrom = AutoSetDateEdit(parent=self.notice_search)
         self.notice_saleDateFrom.setGeometry(QtCore.QRect(85, 20, 160, 22))
-        self.notice_saleDateFrom.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 30), QtCore.QTime(0, 0, 0)))
+        self.notice_saleDateFrom.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 27), QtCore.QTime(0, 0, 0)))
         self.notice_saleDateFrom.setTime(QtCore.QTime(0, 0, 0))
         self.notice_saleDateFrom.setObjectName("notice_saleDateFrom")
         self.notice_saleDateTo = AutoSetDateEdit(parent=self.notice_search)
         self.notice_saleDateTo.setGeometry(QtCore.QRect(275, 20, 160, 22))
-        self.notice_saleDateTo.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 28), QtCore.QTime(0, 0, 0)))
+        self.notice_saleDateTo.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 25), QtCore.QTime(0, 0, 0)))
         self.notice_saleDateTo.setTime(QtCore.QTime(0, 0, 0))
         self.notice_saleDateTo.setObjectName("notice_saleDateTo")
         self.label_24 = QtWidgets.QLabel(parent=self.notice_search)
@@ -861,6 +861,119 @@ class Ui_WLW(object):
         self.noticeCapitalTree.header().setStretchLastSection(True)
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.noticeCapitalTree)
         self.tabWidget.addTab(self.notices, "")
+        self.AiStock = QtWidgets.QWidget()
+        self.AiStock.setObjectName("AiStock")
+        self.groupBox_10 = QtWidgets.QGroupBox(parent=self.AiStock)
+        self.groupBox_10.setGeometry(QtCore.QRect(5, 71, 1508, 405))
+        self.groupBox_10.setObjectName("groupBox_10")
+        self.aiStock_count_number = QtWidgets.QLabel(parent=self.groupBox_10)
+        self.aiStock_count_number.setGeometry(QtCore.QRect(20, 20, 141, 25))
+        self.aiStock_count_number.setObjectName("aiStock_count_number")
+        self.aiStock_Table = QtWidgets.QTableView(parent=self.groupBox_10)
+        self.aiStock_Table.setGeometry(QtCore.QRect(3, 50, 1502, 350))
+        self.aiStock_Table.setObjectName("aiStock_Table")
+        self.aiStock_upPlate = QtWidgets.QPushButton(parent=self.groupBox_10)
+        self.aiStock_upPlate.setGeometry(QtCore.QRect(1290, 22, 30, 25))
+        self.aiStock_upPlate.setStyleSheet("QPushButton {\n"
+"        \n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"    }\n"
+"    QPushButton:hover {\n"
+"        border: 1px solid #FF0000;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        border: 1px solid #00FF00;\n"
+"    }")
+        self.aiStock_upPlate.setText("")
+        self.aiStock_upPlate.setObjectName("aiStock_upPlate")
+        self.aiStock_PageNo = QtWidgets.QLabel(parent=self.groupBox_10)
+        self.aiStock_PageNo.setGeometry(QtCore.QRect(1330, 22, 80, 25))
+        self.aiStock_PageNo.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.aiStock_PageNo.setText("")
+        self.aiStock_PageNo.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.aiStock_PageNo.setObjectName("aiStock_PageNo")
+        self.aiStock_nextPlate = QtWidgets.QPushButton(parent=self.groupBox_10)
+        self.aiStock_nextPlate.setGeometry(QtCore.QRect(1420, 22, 30, 25))
+        self.aiStock_nextPlate.setStyleSheet("QPushButton {\n"
+"        \n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"    }\n"
+"    QPushButton:hover {\n"
+"        border: 1px solid #FF0000;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        border: 1px solid #00FF00;\n"
+"    }")
+        self.aiStock_nextPlate.setText("")
+        self.aiStock_nextPlate.setObjectName("aiStock_nextPlate")
+        self.groupBox_ai = QtWidgets.QGroupBox(parent=self.AiStock)
+        self.groupBox_ai.setGeometry(QtCore.QRect(5, 5, 1508, 61))
+        self.groupBox_ai.setObjectName("groupBox_ai")
+        self.label_35 = QtWidgets.QLabel(parent=self.groupBox_ai)
+        self.label_35.setGeometry(QtCore.QRect(25, 20, 55, 22))
+        self.label_35.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.label_35.setObjectName("label_35")
+        self.aiStock_From = AutoSetDateEdit(parent=self.groupBox_ai)
+        self.aiStock_From.setGeometry(QtCore.QRect(85, 20, 160, 22))
+        self.aiStock_From.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 24), QtCore.QTime(0, 0, 0)))
+        self.aiStock_From.setTime(QtCore.QTime(0, 0, 0))
+        self.aiStock_From.setObjectName("aiStock_From")
+        self.label_36 = QtWidgets.QLabel(parent=self.groupBox_ai)
+        self.label_36.setGeometry(QtCore.QRect(255, 20, 20, 22))
+        self.label_36.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_36.setObjectName("label_36")
+        self.aiStock_To = AutoSetDateEdit(parent=self.groupBox_ai)
+        self.aiStock_To.setGeometry(QtCore.QRect(290, 20, 160, 22))
+        self.aiStock_To.setDateTime(QtCore.QDateTime(QtCore.QDate(2025, 6, 24), QtCore.QTime(0, 0, 0)))
+        self.aiStock_To.setTime(QtCore.QTime(0, 0, 0))
+        self.aiStock_To.setObjectName("aiStock_To")
+        self.aiStockSubmit = QtWidgets.QPushButton(parent=self.groupBox_ai)
+        self.aiStockSubmit.setGeometry(QtCore.QRect(1230, 20, 75, 30))
+        self.aiStockSubmit.setStyleSheet("QPushButton {\n"
+"        border: 1px solid #000000;\n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"    }\n"
+"    QPushButton:hover {\n"
+"        border: 1px solid #FF0000;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        border: 1px solid #00FF00;\n"
+"    }")
+        self.aiStockSubmit.setObjectName("aiStockSubmit")
+        self.aiStockClear = QtWidgets.QPushButton(parent=self.groupBox_ai)
+        self.aiStockClear.setGeometry(QtCore.QRect(1310, 20, 75, 30))
+        self.aiStockClear.setStyleSheet("QPushButton {\n"
+"        border: 1px solid #000000;\n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"    }\n"
+"    QPushButton:hover {\n"
+"        border: 1px solid #FF0000;\n"
+"    }\n"
+"    QPushButton:pressed {\n"
+"        border: 1px solid #00FF00;\n"
+"    }")
+        self.aiStockClear.setObjectName("aiStockClear")
+        self.aiStock_Name = QtWidgets.QLineEdit(parent=self.groupBox_ai)
+        self.aiStock_Name.setGeometry(QtCore.QRect(550, 20, 80, 22))
+        self.aiStock_Name.setObjectName("aiStock_Name")
+        self.aiStock_No = AutoSetNumberLineEdit(parent=self.groupBox_ai)
+        self.aiStock_No.setGeometry(QtCore.QRect(460, 20, 81, 22))
+        self.aiStock_No.setObjectName("aiStock_No")
+        self.aiStock_dataType = QtWidgets.QLabel(parent=self.groupBox_ai)
+        self.aiStock_dataType.setGeometry(QtCore.QRect(640, 20, 60, 22))
+        self.aiStock_dataType.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.aiStock_dataType.setObjectName("aiStock_dataType")
+        self.aiStock_dataTypeContion = QtWidgets.QComboBox(parent=self.groupBox_ai)
+        self.aiStock_dataTypeContion.setGeometry(QtCore.QRect(710, 20, 100, 22))
+        self.aiStock_dataTypeContion.setObjectName("aiStock_dataTypeContion")
+        self.aiStock_groupBox = QtWidgets.QGroupBox(parent=self.AiStock)
+        self.aiStock_groupBox.setGeometry(QtCore.QRect(5, 481, 1508, 281))
+        self.aiStock_groupBox.setObjectName("aiStock_groupBox")
+        self.tabWidget.addTab(self.AiStock, "")
         WLW.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=WLW)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1532, 21))
@@ -911,7 +1024,7 @@ class Ui_WLW(object):
         self.menubar.addAction(self.menu.menuAction())
 
         self.retranslateUi(WLW)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(5)
         self.verticalStackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(WLW)
         WLW.setTabOrder(self.tabWidget, self.saleDateFrom)
@@ -1030,6 +1143,20 @@ class Ui_WLW(object):
         self.notice_showData.setTitle(_translate("WLW", "检索结果"))
         self.notice_count_number.setText(_translate("WLW", "一共110件数据"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.notices), _translate("WLW", "公告"))
+        self.groupBox_10.setTitle(_translate("WLW", "检索结果"))
+        self.aiStock_count_number.setText(_translate("WLW", "一共110件数据"))
+        self.groupBox_ai.setTitle(_translate("WLW", "检索条件"))
+        self.label_35.setText(_translate("WLW", "交易日期"))
+        self.aiStock_From.setDisplayFormat(_translate("WLW", "yyyy年MM月dd日"))
+        self.label_36.setText(_translate("WLW", "至"))
+        self.aiStock_To.setDisplayFormat(_translate("WLW", "yyyy年MM月dd日"))
+        self.aiStockSubmit.setText(_translate("WLW", "检索"))
+        self.aiStockClear.setText(_translate("WLW", "清除"))
+        self.aiStock_Name.setPlaceholderText(_translate("WLW", "股票名称"))
+        self.aiStock_No.setPlaceholderText(_translate("WLW", "股票代码"))
+        self.aiStock_dataType.setText(_translate("WLW", "数据类型"))
+        self.aiStock_groupBox.setTitle(_translate("WLW", "投资分析助手"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.AiStock), _translate("WLW", "AI诊股"))
         self.menu.setTitle(_translate("WLW", "数据采集"))
         self.fenkaicaiji.setTitle(_translate("WLW", "分开采集"))
         self.actionCrawlAll.setText(_translate("WLW", "采集所有"))

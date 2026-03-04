@@ -181,9 +181,9 @@ def AddClickedIncreasePage(type, windows, formWigdet):
 # 数据显示处理
 def showTableData(data, windows, formWigdet):
     # ListView model 4Row 3 coloumn
-    windows.plateFund = QStandardItemModel(0, 18)
+    windows.plateFundShowModel = QStandardItemModel(0, 18)
     # 创建行标题
-    windows.plateFund.setHorizontalHeaderLabels(
+    windows.plateFundShowModel.setHorizontalHeaderLabels(
         ['交易日期', '板块代码', '板块名称', '最新价', '涨跌幅', '主力B(净额)', '主力B(净占比)', '优秀股名称',
          '优秀股代码',
          '持股机构数', '涨停主题', '概念', '涨停原因', '涨幅', '价格', '成交量(手)', '成交额', '换手率', 'hidden'])
@@ -192,7 +192,7 @@ def showTableData(data, windows, formWigdet):
     showHeaderLables = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     if data['data']:
         for row, item in enumerate(data['data']):
-            windows.plateFund.appendRow([setQStandardItem(str(item[value]), value) for value in showHeaderLables])
+            windows.plateFundShowModel.appendRow([setQStandardItem(str(item[value]), value) for value in showHeaderLables])
 
     # 页码格式化
     formWigdet.plateFundPageNo.setText(f' 第 {data["current_page"]} 页 ')
@@ -215,7 +215,7 @@ def showTableData(data, windows, formWigdet):
 
     # 自定义排序Model
     customSortmodel = CustomProxyModel()
-    customSortmodel.setSourceModel(windows.plateFund)
+    customSortmodel.setSourceModel(windows.plateFundShowModel)
     formWigdet.plateFund_showStockTable.setModel(customSortmodel)
 
 # 分页处理
@@ -292,8 +292,9 @@ def AddClickedPlateFundSubmit(windows, formWigdet, activateType):
 def editPlateFundTable(windows, formWigdet, activateType: str = 'S'):
     # 主力资金Tab--数据绑定
     getPlateFundData(windows, formWigdet, activateType)
-    # 主力资金Tab--数据显示设定
-    setingPlateFundTable(formWigdet.plateFund_showStockTable)
+    if windows.showPlateFundData:
+        # 主力资金Tab--数据显示设定
+        setingPlateFundTable(formWigdet.plateFund_showStockTable)
     # 板块资金--主力B金额条形图
     editPlateFundCharts(windows, formWigdet, activateType)
 
@@ -506,6 +507,7 @@ def getPlateFundData(windows, formWigdet, activateType):
     # 添加数据;
     windows.showPlateFundData = PlateFundModel.getPlateFundWLWData(plateFundCondition)
     count = 0
+    enableFlag = False
     # 主力净流入
     plateFundInput = float(0)
     # 主力净流出
@@ -520,18 +522,27 @@ def getPlateFundData(windows, formWigdet, activateType):
                 plateFundOutput += f62
         # 总件数format
         count = len(windows.showPlateFundData)
+        # 页码初始化
+        windows.current_PlateFundPage = 1
+        # 分页处理
+        data = get_page(windows.showPlateFundData, windows.current_PlateFundPage, 11)
+        # 数据显示处理
+        showTableData(data, windows, formWigdet)
+        enableFlag = True
+    else:
+        # windows.plateFundShowModel.clear()  # 清除所有数据及表头
+        # 分页按钮不显示
+        formWigdet.upPlateFundPage.setVisible(False)
+        formWigdet.nextPlateFundPage.setVisible(False)
+        # 页码格式化
+        formWigdet.plateFundPageNo.setText('')
 
     formWigdet.plateFundInput.setText('净流入: ' + convert_unit(plateFundInput) + '亿')
     formWigdet.plateFundOutput.setText('净流出: ' + convert_unit(plateFundOutput) + '亿')
     # 总件数format
     formWigdet.plateFund_count_number.setText(f'一共 {count} 件数据')
-
-    # 页码初始化
-    windows.current_PlateFundPage = 1
-    # 分页处理
-    data = get_page(windows.showPlateFundData, windows.current_PlateFundPage, 11)
-    # 数据显示处理
-    showTableData(data, windows, formWigdet)
+    # data 不显示
+    formWigdet.plateFund_showStockTable.setVisible(enableFlag)
 
 # 悬浮提示
 def setQStandardItem(text, index):

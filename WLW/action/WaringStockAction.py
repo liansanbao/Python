@@ -261,15 +261,28 @@ def getWaringStockData(windows, formWigdet):
                                                 waringStockType, orderByOption)
     # 数据检索
     windows.showWaringStockData = WaringStockModel.getWaringStockWLWData(waringStockCondition)
+    count = 0
+    enableFlag = False
+    if windows.showWaringStockData:
+        enableFlag = True
+        count = len(windows.showWaringStockData)
+        # 页码初始化
+        windows.current_WaringPage = 1
+        # 分页处理
+        data = get_page(windows.showWaringStockData, windows.current_WaringPage, 20)
+        # 数据显示处理
+        showTableData(data, windows, formWigdet)
+    else:
+        # windows.waringStockModel.clear()  # 清除所有数据及表头
+        # 分页按钮不显示
+        formWigdet.upWaringPage.setVisible(False)
+        formWigdet.nextWaringPage.setVisible(False)
+        # 页码格式化
+        formWigdet.plateWaringNo.setText('')
     # 总件数format
-    formWigdet.waring_count_number.setText(f'一共 {len(windows.showWaringStockData)} 件数据')
-
-    # 页码初始化
-    windows.current_WaringPage = 1
-    # 分页处理
-    data = get_page(windows.showWaringStockData, windows.current_WaringPage, 20)
-    # 数据显示处理
-    showTableData(data, windows, formWigdet)
+    formWigdet.waring_count_number.setText(f'一共 {count} 件数据')
+    # data 不显示
+    formWigdet.waring_showStockTable.setVisible(enableFlag)
 
 # 事件绑定 -- 清除
 def AddWaringClickedStockClear(windows, formWigdet):

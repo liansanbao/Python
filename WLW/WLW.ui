@@ -67,7 +67,7 @@ QTabWidget::pane {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>5</number>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -119,8 +119,8 @@ QTabWidget::pane {
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
-         <month>7</month>
-         <day>1</day>
+         <month>6</month>
+         <day>28</day>
         </datetime>
        </property>
        <property name="time">
@@ -165,8 +165,8 @@ QTabWidget::pane {
          <minute>0</minute>
          <second>0</second>
          <year>2025</year>
-         <month>7</month>
-         <day>1</day>
+         <month>6</month>
+         <day>28</day>
         </datetime>
        </property>
        <property name="time">
@@ -924,7 +924,7 @@ font: 11pt &quot;楷体&quot;;</string>
          <second>0</second>
          <year>2025</year>
          <month>6</month>
-         <day>28</day>
+         <day>25</day>
         </datetime>
        </property>
        <property name="time">
@@ -970,7 +970,7 @@ font: 11pt &quot;楷体&quot;;</string>
          <second>0</second>
          <year>2025</year>
          <month>6</month>
-         <day>28</day>
+         <day>25</day>
         </datetime>
        </property>
        <property name="time">
@@ -1665,7 +1665,7 @@ font: 11pt &quot;楷体&quot;;</string>
          <second>0</second>
          <year>2025</year>
          <month>6</month>
-         <day>29</day>
+         <day>26</day>
         </datetime>
        </property>
        <property name="time">
@@ -1711,7 +1711,7 @@ font: 11pt &quot;楷体&quot;;</string>
          <second>0</second>
          <year>2025</year>
          <month>6</month>
-         <day>29</day>
+         <day>26</day>
         </datetime>
        </property>
        <property name="time">
@@ -2142,7 +2142,7 @@ font: 11pt &quot;楷体&quot;;</string>
          <second>0</second>
          <year>2025</year>
          <month>6</month>
-         <day>30</day>
+         <day>27</day>
         </datetime>
        </property>
        <property name="time">
@@ -2172,7 +2172,7 @@ font: 11pt &quot;楷体&quot;;</string>
          <second>0</second>
          <year>2025</year>
          <month>6</month>
-         <day>28</day>
+         <day>25</day>
         </datetime>
        </property>
        <property name="time">
@@ -2413,6 +2413,340 @@ QTreeView::item {
         </item>
        </layout>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="AiStock">
+     <attribute name="title">
+      <string>AI诊股</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_10">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>71</y>
+        <width>1508</width>
+        <height>405</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索结果</string>
+      </property>
+      <widget class="QLabel" name="aiStock_count_number">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>141</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>一共110件数据</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="aiStock_Table">
+       <property name="geometry">
+        <rect>
+         <x>3</x>
+         <y>50</y>
+         <width>1502</width>
+         <height>350</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="aiStock_upPlate">
+       <property name="geometry">
+        <rect>
+         <x>1290</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="aiStock_PageNo">
+       <property name="geometry">
+        <rect>
+         <x>1330</x>
+         <y>22</y>
+         <width>80</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="aiStock_nextPlate">
+       <property name="geometry">
+        <rect>
+         <x>1420</x>
+         <y>22</y>
+         <width>30</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_ai">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>5</y>
+        <width>1508</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>检索条件</string>
+      </property>
+      <widget class="QLabel" name="label_35">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>20</y>
+         <width>55</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>交易日期</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="aiStock_From">
+       <property name="geometry">
+        <rect>
+         <x>85</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>24</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_36">
+       <property name="geometry">
+        <rect>
+         <x>255</x>
+         <y>20</y>
+         <width>20</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>至</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="AutoSetDateEdit" name="aiStock_To">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>20</y>
+         <width>160</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2025</year>
+         <month>6</month>
+         <day>24</day>
+        </datetime>
+       </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy年MM月dd日</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="aiStockSubmit">
+       <property name="geometry">
+        <rect>
+         <x>1230</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>检索</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="aiStockClear">
+       <property name="geometry">
+        <rect>
+         <x>1310</x>
+         <y>20</y>
+         <width>75</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    QPushButton:hover {
+        border: 1px solid #FF0000;
+    }
+    QPushButton:pressed {
+        border: 1px solid #00FF00;
+    }</string>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="aiStock_Name">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>20</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>股票名称</string>
+       </property>
+      </widget>
+      <widget class="AutoSetNumberLineEdit" name="aiStock_No">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>20</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="placeholderText">
+        <string>股票代码</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="aiStock_dataType">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>20</y>
+         <width>60</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>数据类型</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="aiStock_dataTypeContion">
+       <property name="geometry">
+        <rect>
+         <x>710</x>
+         <y>20</y>
+         <width>100</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="aiStock_groupBox">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>481</y>
+        <width>1508</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>投资分析助手</string>
+      </property>
      </widget>
     </widget>
    </widget>

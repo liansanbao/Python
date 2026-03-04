@@ -11,7 +11,7 @@ from WLW.StockBase import WaringStockServer, PlateFundServer
 from WLW.Tools.LoggingEx import logger
 from WLW.Ui_WLW import Ui_WLW
 from WLW.action import StockInfoAction, WaringStockAction, IncreaseFiveAction, PlateFundAction, MenuAction, \
-    NoticesAction
+    NoticesAction, AiStockAction
 from WLW.model import DataOpreationModel, ChinaHolidaysModel
 
 # 获取当前脚本的绝对路径
@@ -130,6 +130,7 @@ class LWLW():
         self.__mainform.lncrease_stockSubmit.setIcon(icon1)
         self.__mainform.waring_stockSubmit.setIcon(icon1)
         self.__mainform.notice_stockSubmit.setIcon(icon1)
+        self.__mainform.aiStockSubmit.setIcon(icon1)
 
         # 分类显示按钮Icon设定
         icon = QIcon()
@@ -146,6 +147,7 @@ class LWLW():
         self.__mainform.lncrease_stockClear.setIcon(clearIcon)
         self.__mainform.waring_stockClear.setIcon(clearIcon)
         self.__mainform.notice_stockClear.setIcon(clearIcon)
+        self.__mainform.aiStockClear.setIcon(clearIcon)
 
         # 投资按钮Icon设定
         touziIcon = QIcon()
@@ -166,6 +168,8 @@ class LWLW():
         WaringStockAction.waringStockInitContent(self, self.__mainform)
         # 公告
         NoticesAction.noticesInitContent(self, self.__mainform)
+        # AI诊股
+        AiStockAction.aiStockInitContent(self, self.__mainform)
 
     # 事件绑定
     def actionSetting(self):
@@ -183,6 +187,8 @@ class LWLW():
         WaringStockAction.waringStockActionSetting(self, self.__mainform)
         # 公告
         NoticesAction.noticesActionSetting(self, self.__mainform)
+        # AI诊股
+        AiStockAction.aiStockActionSetting(self, self.__mainform)
 
     # 数据处理
     def editDataTable(self):
@@ -198,6 +204,8 @@ class LWLW():
         WaringStockAction.editWaringStockTable(self, self.__mainform)
         # 公告数据
         NoticesAction.editNoticeTable(self, self.__mainform)
+        # AI诊股
+        AiStockAction.editAiStockTable(self, self.__mainform)
 
     # 主处理
     def run(self):

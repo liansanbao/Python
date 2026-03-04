@@ -346,20 +346,30 @@ def getStockData(windows, formWidget):
     # 数据检索;
     windows.showStockData = StockInfoModel.getStockInfoWLWData(stockInfoCondition)
     enableFlag = False
-
+    count = 0
     # 设定项目值显示
     if windows.showStockData:
         enableFlag = True
-    # 总件数format
-    formWidget.count_number.setText(f'一共 {len(windows.showStockData)} 件数据')
-    formWidget.stockDialog.setEnabled(enableFlag)
+        count = len(windows.showStockData)
+        # 页码初始化
+        windows.current_StockPage = 1
+        # 分页处理
+        data = get_page(windows.showStockData, windows.current_StockPage, 20)
+        # 数据显示处理
+        showTableData(data, windows, formWidget)
+    else:
+        # windows.stockModel.clear()  # 清除所有数据及表头
+        # 分页按钮不显示
+        formWidget.upStockPage.setVisible(False)
+        formWidget.nextStockPage.setVisible(False)
+        # 页码格式化
+        formWidget.plateStockNo.setText('')
 
-    # 页码初始化
-    windows.current_StockPage = 1
-    # 分页处理
-    data = get_page(windows.showStockData, windows.current_StockPage, 20)
-    # 数据显示处理
-    showTableData(data, windows, formWidget)
+    # 总件数format
+    formWidget.count_number.setText(f'一共 {count} 件数据')
+    formWidget.stockDialog.setEnabled(enableFlag)
+    # data 不显示
+    formWidget.showStockTable.setVisible(enableFlag)
 
 # 涨停板Tab--数据显示设定
 def setingStockTable(tableView):
