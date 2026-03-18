@@ -198,6 +198,8 @@ class HyzjlPlaywright(EmBase):
                         break
                     self.search_page.wait_for_timeout(5000)
                     print(f'{logger_now_date()} 第 {self.current_page} 页，已采集完了！！！！')
+                else:
+                    print(f'{logger_now_date()} 第 {self.current_page} 页，已采集完了！！！！')
 
                 # 关闭页面
                 self.search_page.close()
@@ -233,9 +235,10 @@ class HyzjlPlaywright(EmBase):
         try:
             request_url = response.url
             # 沪深京A股数据：https://push2.eastmoney.com/api/qt/clist/get?cb=jQuery112303754194046966902_1763382737624&fid=f62&po=1&pz=50&pn=1&np=1&fltt=2&invt=2&ut=8dec03ba335b81bf4ebdf7b29ec27d15&fs=m%3A90+t%3A2&fields=f12%2Cf14%2Cf2%2Cf3%2Cf62%2Cf184%2Cf66%2Cf69%2Cf72%2Cf75%2Cf78%2Cf81%2Cf84%2Cf87%2Cf204%2Cf205%2Cf124%2Cf1%2Cf13
+            #             https://push2.eastmoney.com/api/qt/clist/get?cb=jQuery1123039649118580983_1773833299796&fid=f62&po=1&pz=50&pn=2&np=1&fltt=2&invt=2&ut=8dec03ba335b81bf4ebdf7b29ec27d15&fs=m%3A90+s%3A4&fields=f12%2Cf14%2Cf2%2Cf3%2Cf62%2Cf184%2Cf66%2Cf69%2Cf72%2Cf75%2Cf78%2Cf81%2Cf84%2Cf87%2Cf204%2Cf205%2Cf124%2Cf1%2Cf13
             if response.headers.get('content-type') == 'application/javascript; charset=UTF-8' and request_url.find(
-                    'fs=m%3A90+t%3A2') != -1:
-                # print(f'沪深京A股数据: {request_url}')
+                    'fs=m%3A90+') != -1:
+                print(f'沪深京A股数据: {request_url}')
                 # 沪深京A股数据抓取
                 self.parseHyzjl(response)
 
