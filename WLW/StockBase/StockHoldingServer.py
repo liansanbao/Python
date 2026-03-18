@@ -24,7 +24,7 @@ def exec(saleDay:str = ''):
     if saleDay == '':
         saleDay = DateTimeUtils.get_quarter_dates()['end_date']
 
-    url = f'https://w7wp557v37c1.xiaomiqiu.com/wlw?table_key=STOCK_HOLDING&sealData={saleDay}'
+    url = f'https://www.lisibao.top/wlw?table_key=STOCK_HOLDING&sealData={saleDay}'
     response_data = get(url)
     row_data = []
     if response_data.status_code == 200:

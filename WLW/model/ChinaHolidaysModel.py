@@ -50,7 +50,7 @@ def exec(saleDay:str = ''):
         nowdate = DateTimeUtils.saleDate()
         saleDay = DateTimeUtils.Format_date(ymd=nowdate, format='%Y')
 
-    url = f'http://46zllpjb6g5c.xiaomiqiu.com/wlw?table_key=China_Holidays&sealData={saleDay}'
+    url = f'https://www.lisibao.top/wlw?table_key=China_Holidays&sealData={saleDay}'
     response_data = get(url)
     row_data = []
     if response_data.status_code == 200:

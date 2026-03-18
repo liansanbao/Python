@@ -5,7 +5,6 @@
 # @File : AiStockAction.py
 # @desc : Ai诊股处理
 import copy
-import os
 from functools import partial
 from typing import Dict, Any
 
@@ -97,7 +96,7 @@ class ModelWorker(QThread):
             self.error_occurred.emit(str(e))
 
 # 画面初期设定
-def aiStockInitContent(windows, formWidget):
+def aiStockInitContent(windows, formWidget, optionType: str = '0'):
     # 股票No、板块No、概念No
     formWidget.aiStock_No.setText('')
     # 股票名称、板块名称、概念名称
@@ -122,62 +121,65 @@ def aiStockInitContent(windows, formWidget):
     # 交易日期To 日历控件弹出
     formWidget.aiStock_To.setCalendarPopup(True)
 
-    # AI layout START
-    vbox = QVBoxLayout()
+    if optionType == '0':
+        # AI layout START
+        vbox = QVBoxLayout()
 
-    # 对话显示区域
-    formWidget.chat_display = QTextEdit()
-    formWidget.chat_display.setStyleSheet("""
-                QTextEdit {
+        # 对话显示区域
+        formWidget.chat_display = QTextEdit()
+        formWidget.chat_display.setStyleSheet("""
+                    QTextEdit {
+                        border: none;
+                        background-color: #f0f8ff;
+                        padding: 5px;
+                    }
+                """)
+        formWidget.chat_display.setReadOnly(True)
+        vbox.addWidget(formWidget.chat_display)
+
+        # 输入区域和按钮
+        hbox = QHBoxLayout()
+        formWidget.input_box = QLineEdit()
+        formWidget.input_box.setStyleSheet("""
+                QLineEdit {
                     border: none;
                     background-color: #f0f8ff;
                     padding: 5px;
                 }
-            """)
-    formWidget.chat_display.setReadOnly(True)
-    vbox.addWidget(formWidget.chat_display)
+            """)  # 无边框输入框
+        formWidget.input_box.setPlaceholderText('请输入你的问题...')
+        formWidget.input_box.setFont(QFont("微软雅黑", 11))
+        formWidget.send_btn = QPushButton('发送')
+        formWidget.send_btn.setFixedSize(75, 30)
+        formWidget.send_btn.setStyleSheet("""
+                QPushButton {
+                    border: 1px solid #000000;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+                QPushButton:hover {
+                    border: 1px solid #FF0000;
+                }
+                QPushButton:pressed {
+                    border: 1px solid #00FF00;
+                }
+        """)
+        formWidget.send_btn.clicked.connect(partial(ask_model, windows, formWidget))
+        formWidget.input_box.returnPressed.connect(formWidget.send_btn.click)  # 回车发送
 
-    # 输入区域和按钮
-    hbox = QHBoxLayout()
-    formWidget.input_box = QLineEdit()
-    formWidget.input_box.setStyleSheet("""
-            QLineEdit {
-                border: none;
-                background-color: #f0f8ff;
-                padding: 5px;
-            }
-        """)  # 无边框输入框
-    formWidget.input_box.setPlaceholderText('请输入你的问题...')
-    formWidget.input_box.setFont(QFont("微软雅黑", 11))
-    formWidget.send_btn = QPushButton('发送')
-    formWidget.send_btn.setFixedSize(75, 30)
-    formWidget.send_btn.setStyleSheet("""
-            QPushButton {
-                border: 1px solid #000000;
-                border-radius: 5px;
-                padding: 5px;
-            }
-            QPushButton:hover {
-                border: 1px solid #FF0000;
-            }
-            QPushButton:pressed {
-                border: 1px solid #00FF00;
-            }
-    """)
-    formWidget.send_btn.clicked.connect(partial(ask_model, windows, formWidget))
-    formWidget.input_box.returnPressed.connect(formWidget.send_btn.click)  # 回车发送
+        hbox.addWidget(formWidget.input_box)
+        hbox.addWidget(formWidget.send_btn)
+        vbox.addLayout(hbox)
 
-    hbox.addWidget(formWidget.input_box)
-    hbox.addWidget(formWidget.send_btn)
-    vbox.addLayout(hbox)
+        formWidget.aiStock_groupBox.setLayout(vbox)
 
-    formWidget.aiStock_groupBox.setLayout(vbox)
+        # 初始化计时器和工作线程
+        windows.timer = QTimer()
+        windows.timer.timeout.connect(partial(update_timer, windows, formWidget))
 
-    # 初始化计时器和工作线程
-    windows.timer = QTimer()
-    windows.timer.timeout.connect(partial(update_timer, windows, formWidget))
+    formWidget.chat_display.setText('')
+    formWidget.input_box.setText('')
     windows.seconds_elapsed = 0
-
     windows.worker = None
     # AI layout END
 
@@ -197,6 +199,8 @@ def aiStockInitContent(windows, formWidget):
     nextIcon = QIcon()
     nextIcon.addPixmap(QPixmap("_internal/image/nextPage.svg"), QIcon.Mode.Normal, QIcon.State.Off)
     formWidget.aiStock_nextPlate.setIcon(nextIcon)
+    # 股票类型数据
+    windows.showAiStockData = None
 
 # 千问大模型执行
 def ask_model(windows, formWidget):
@@ -550,7 +554,7 @@ def showTableData(data, windows, formWigdet, indexNo, simCount, headerTitles, sh
 # 事件绑定 -- 清除按钮事件
 def AddClickedNoticClear(windows, formWidget):
     try:
-        aiStockInitContent(windows, formWidget)
+        aiStockInitContent(windows, formWidget, '1')
     except Exception as ex:
         logger.error(f'清除处理出错了：{str(ex)}')
 

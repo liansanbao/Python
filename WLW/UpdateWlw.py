@@ -19,7 +19,7 @@ from PyQt6.QtCore import QThread, pyqtSignal, QSize
 from WLW.Tools.LoggingEx import logger
 
 # 软件版本
-CURRENT_VERSION=4.0
+CURRENT_VERSION=4.2
 
 # 下载
 class DownloadThread(QThread):
@@ -61,7 +61,7 @@ class InstallerWindow(QMainWindow):
 
     def isUpdae(self):
         try:
-            self.download_url = "https://w7wp557v37c1.xiaomiqiu.com/downloadWlw?pType=Online"
+            self.download_url = "https://www.lisibao.top/downloadWlw?pType=Online"
             self.wlw_dict = {}
 
             with requests.get(self.download_url, stream=True, timeout=30) as r:
@@ -173,7 +173,7 @@ class InstallerWindow(QMainWindow):
 
     def start_download(self):
         self.btn_update.setEnabled(False)
-        # download_url = "https://w7wp557v37c1.xiaomiqiu.com/downloads/2"
+        # download_url = "https://www.lisibao.top/downloads/2"
         temp_path = os.path.join(os.getenv("TEMP"), f"{self.wlw_dict['name']}.{self.wlw_dict['version']}.exe")
         logger.info(f'download_path: {temp_path}')
 

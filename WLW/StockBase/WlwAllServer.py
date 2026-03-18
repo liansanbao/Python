@@ -34,7 +34,7 @@ def exec(saleDay:str = ''):
     if yearMonthDom == yearMonth:
         siq_saleDay = ''
 
-    url = f'https://w7wp557v37c1.xiaomiqiu.com/wlwAll?table_key=WLW_ALL'
+    url = f'https://www.lisibao.top/wlwAll?table_key=WLW_ALL'
     data = {
         'D_SALEDAY': saleDay,
         # 'M_SALEDAY': saleDay,

@@ -31,7 +31,7 @@ dir_path = Path(str(os.path.dirname(script_path)))
 
 dir_parent_path = dir_path.parent.parent  # 连续回退两级
 
-BASE_URL = "https://w7wp557v37c1.xiaomiqiu.com/wlw"
+BASE_URL = "https://www.lisibao.top/wlw"
 
 # 按钮样式美化
 btn_StyleSheet = """
