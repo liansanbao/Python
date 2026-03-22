@@ -6,6 +6,8 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+from scrapy.settings.default_settings import RANDOMIZE_DOWNLOAD_DELAY, CONCURRENT_REQUESTS, DOWNLOAD_DELAY, \
+    CONCURRENT_REQUESTS_PER_DOMAIN, RETRY_TIMES, RETRY_HTTP_CODES
 
 BOT_NAME = "eastmoney"
 
@@ -20,12 +22,12 @@ NEWSPIDER_MODULE = "eastmoney.spiders"
 ROBOTSTXT_OBEY = False
 
 # 文件出力 '/var/output/scrapy/' ** centos
-# OUTPUT_FILE_PATH = '/var/output/scrapy/'
+OUTPUT_FILE_PATH = '/var/output/scrapy/'
 # 文件出力 '/var/output/scrapy/' ** windows
-OUTPUT_FILE_PATH = 'D:\learing\Python\output\\'
+# OUTPUT_FILE_PATH = 'D:\learing\Python\output\\'
 
 # MongoDB连接配置
-MONGODB_HOST = '192.168.1.15'
+MONGODB_HOST = '192.168.1.12'
 MONGODB_PORT = 27017
 MONGODB_DATABASE = 'eastmoneySpider'
 # 个股资金流
@@ -39,9 +41,8 @@ MONGODB_COLLECTION_MAINSTOCK = 'mainstock_crawl'
 # 通达信涨停分析
 MONGODB_COLLECTION_TDXDAILYLIMIT = 'tdx_dailylimit_crawl'
 
-
 # MYSQL连接配置
-MYSQL_HOST = '192.168.1.15'
+MYSQL_HOST = '192.168.1.12'
 MYSQL_PORT = 3306
 MYSQL_DATABASE = 'idiom'
 MYSQL_USER = 'root'
@@ -65,22 +66,16 @@ MAINSTOCK_JJ = 4
 # 通达信涨停原因数据采集
 TDX_COOKIE_STR = 'Hm_lvt_5c4c948b141e4d66943a8430c3d600d0=1751931399; HMACCOUNT=E0736FD4E47DB5C7; ASPSessionID=; LST=00; Hm_lpvt_5c4c948b141e4d66943a8430c3d600d0=1752067365'
 
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
-
-# Configure a delay for requests for the same website (default: 0)
-# See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
-# See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
-# The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
-
-# Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
-
-# Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+# 并发请求数，4个或者5比较安装
+CONCURRENT_REQUESTS = 4
+# 每个域名并发，2
+CONCURRENT_REQUESTS_PER_DOMAIN = 2
+# 下载延迟3秒
+DOWNLOAD_DELAY = 3
+RANDOMIZE_DOWNLOAD_DELAY = True
+# 重试3次，遇到403、503这些错误就重试
+RETRY_TIMES = 3
+RETRY_HTTP_CODES = [403, 503]
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
@@ -102,12 +97,6 @@ DOWNLOADER_MIDDLEWARES = {
    "eastmoney.middlewares.EastmoneyDownloaderMiddleware": 543,
 }
 
-# Enable or disable extensions
-# See https://docs.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    "scrapy.extensions.telnet.TelnetConsole": None,
-#}
-
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
@@ -116,28 +105,7 @@ ITEM_PIPELINES = {
     "eastmoney.pipelines.EastmoneyMysqlPipeline":200
 }
 
-# Enable and configure the AutoThrottle extension (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
-# The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
-# The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
-# The average number of requests Scrapy should be sending in parallel to
-# each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
-# Enable showing throttling stats for every response received:
-#AUTOTHROTTLE_DEBUG = False
-
-# Enable and configure HTTP caching (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
-#HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = "httpcache"
-#HTTPCACHE_IGNORE_HTTP_CODES = []
-#HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
-
 # Set settings whose default value is deprecated to a future-proof value
-REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
+# REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"

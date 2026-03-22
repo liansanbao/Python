@@ -21,9 +21,9 @@ class TdxPositionCrawlSpider(scrapy.Spider):
         # self.logger.info(f'self.userInfoDect: {self.userInfoDect.keys()}')
         self.settings = get_project_settings()
         self.base_url = 'https://fk.tdx.com.cn/TQLEX?Entry=CWServ.tdxsj_jgcg_jgcgmx'
-        self.max_pages = 1  # 最大页数限制
         # 用户信息存储, 减少访问服务器的负担
         self.ivperStockNoDect = self.load_existing_json()  # 加载已有的用户信息
+        self.logger.error(f'将要处理件数: {len(self.ivperStockNoDect)}')
 
     # 读取已有的用户信息
     def load_existing_json(self):
