@@ -8,7 +8,8 @@ a = Analysis(
     # 将资源文件和akshare模块的mini_racer.dll和calendar.json文件打包到编译目录
     # 将pyecharts相关库文件打包到编译目录(pyecharts\\datasets, pyecharts\\render\\templates)
     datas=[
-        ('_internal\\config\\config.ini', 'config\\config.ini'),
+        ('_internal\\config\\config.ini', 'config\\'),
+        ('_internal\\config\\db_config.json', 'config\\'),
         # ('_internal\\LOG', 'LOG'),
         ('_internal\\db', 'db'),
         ('_internal\\chart\\*', 'WLW\\action\\chart'),

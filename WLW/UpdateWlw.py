@@ -19,7 +19,7 @@ from PyQt6.QtCore import QThread, pyqtSignal, QSize
 from WLW.Tools.LoggingEx import logger
 
 # 软件版本
-CURRENT_VERSION=4.2
+CURRENT_VERSION=4.5
 
 # 下载
 class DownloadThread(QThread):
@@ -62,7 +62,7 @@ class InstallerWindow(QMainWindow):
 
     def isUpdae(self):
         try:
-            self.download_url = f"{self.server_url}downloadWlw?pType=Online"
+            self.download_url = f"{self.server_url}downloadWlw?pType=OnlineUp"
             self.wlw_dict = {}
 
             with requests.get(self.download_url, stream=True, timeout=30) as r:
