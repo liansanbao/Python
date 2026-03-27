@@ -4,6 +4,7 @@
 # @Version: V 1.0
 # @File : LoginSystem.py
 # @desc : 系统用户登录、注册、密码找回等等
+import configparser
 import json
 import multiprocessing
 import os
@@ -31,7 +32,12 @@ dir_path = Path(str(os.path.dirname(script_path)))
 
 dir_parent_path = dir_path.parent.parent  # 连续回退两级
 
-BASE_URL = "https://www.lisibao.top/wlw"
+# 读取配置文件
+config = configparser.ConfigParser()
+config.read('_internal/config/config.ini', 'utf-8')  # 确保config.ini文件存在
+# 获取服务器URL
+server_url = config.get('ACCESS_SERVER', 'data_url', fallback='https://www.lisibao.top/')
+BASE_URL = f"{server_url}wlw"
 
 # 按钮样式美化
 btn_StyleSheet = """
@@ -341,8 +347,9 @@ class ResetPasswordPage(QWidget):
 
 # 登录
 class LoginWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.config = config
         # MacAddress获取
         self.macAddress = get_mac_address()
         # 用户记忆数据获取
@@ -494,7 +501,7 @@ class LoginWindow(QMainWindow):
         try:
             # windows打包必须，否则无线重复启动，linux上无须
             multiprocessing.freeze_support()
-            qApp = LWLW(passKey)
+            qApp = LWLW(passKey, self.config)
             qApp.run()
             # 关闭登录窗口
             self.hide()
@@ -680,10 +687,10 @@ class RegisterForm(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = InstallerWindow(dir_path.parent, dir_parent_path)
+    window = InstallerWindow(dir_path.parent, dir_parent_path, server_url)
     if window.isUpdae():
         window.show()
     else:
-        window = LoginWindow()
+        window = LoginWindow(config)
         window.show()
     sys.exit(app.exec())

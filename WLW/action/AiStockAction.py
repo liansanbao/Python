@@ -5,6 +5,7 @@
 # @File : AiStockAction.py
 # @desc : Ai诊股处理
 import copy
+from email.policy import default
 from functools import partial
 from typing import Dict, Any
 
@@ -52,14 +53,14 @@ class ModelWorker(QThread):
     response_received = pyqtSignal(str, int)
     error_occurred = pyqtSignal(str)
 
-    def __init__(self, messages):
+    def __init__(self, messages, bailian_key, bailian_url):
         super().__init__()
         # 初始化OpenAI客户端
         self.client = OpenAI(
             # 如果没有配置环境变量，请用阿里云百炼API Key替换：api_key="sk-xxx"
             # api_key=os.getenv("DASHSCOPE_API_KEY"),
-            api_key= 'sk-6396cd26c2204d5b8854c4b2e5ac0eec',
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+            api_key= bailian_key,
+            base_url= bailian_url,
         )
         self.messages = messages
     # 千问大模型执行
@@ -204,44 +205,53 @@ def aiStockInitContent(windows, formWidget, optionType: str = '0'):
 
 # 千问大模型执行
 def ask_model(windows, formWidget):
-    windows.user_input = formWidget.input_box.text().strip()
-    msgContent = ""
-    if not windows.user_input:
-        msgContent = "请描述你的问题。"
+    try:
+        windows.user_input = formWidget.input_box.text().strip()
+        msgContent = ""
+        bailian_key = windows.config.get('ALIYUN_RAM', 'bailian_key', fallback='')
+        bailian_url = windows.config.get('ALIYUN_RAM', 'bailian_url', fallback='')
+        print(f'bailian_key: {bailian_key}')
+        if bailian_key == '' or bailian_url == '':
+            msgContent = "千问大模型正在开发中，敬请期待！"
 
-    # 股票数据验证
-    if windows.showAiStockData == None or len(windows.showAiStockData) == 0:
-        msgContent += "\n数据没有了，不能使用AI大模型。"
+        elif not windows.user_input:
+            msgContent = "请描述你的问题。"
 
-    if msgContent:
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Icon.NoIcon)
-        msg.setWindowTitle('数据采集')
-        msg.setWindowIcon(QtGui.QIcon("_internal/image/wlw.svg"))
-        msg.setText(msgContent)
-        # 设置消息框大小
-        msg.setFixedSize(800, 800)  # 宽度800像素，高度800像素
-        # 添加确定按钮
-        msg.setStandardButtons(QMessageBox.StandardButton.Ok)
-        msg.exec()
-        return
+        # 股票数据验证
+        elif windows.showAiStockData == None or len(windows.showAiStockData) == 0:
+            msgContent = "数据没有了，不能使用AI大模型。"
 
-    messages = [
-        {"role": "user", "content": f"{windows.user_input}, {windows.showAiStockData}"}]
-    # 清空显示区域
-    formWidget.chat_display.clear()
-    windows.seconds_elapsed = 0
-    windows.is_streaming = True
-    start_timer(windows, formWidget)
+        if msgContent:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.NoIcon)
+            msg.setWindowTitle('数据采集')
+            msg.setWindowIcon(QtGui.QIcon("_internal/image/wlw.svg"))
+            msg.setText(msgContent)
+            # 设置消息框大小
+            msg.setFixedSize(800, 800)  # 宽度800像素，高度800像素
+            # 添加确定按钮
+            msg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            msg.exec()
+            return
 
-    # 显示初始等待信息
-    formWidget.chat_display.setPlainText(f"[等待中] 正在请求千问大模型...\n已等待 0 秒")
+        messages = [
+            {"role": "user", "content": f"{windows.user_input}, {windows.showAiStockData}"}]
+        # 清空显示区域
+        formWidget.chat_display.clear()
+        windows.seconds_elapsed = 0
+        windows.is_streaming = True
+        start_timer(windows, formWidget)
 
-    windows.worker = ModelWorker(messages)
-    windows.worker.response_received.connect(partial(handle_response, windows, formWidget))
-    windows.worker.error_occurred.connect(partial(handle_error, windows, formWidget))
-    windows.worker.finished.connect(windows.worker.deleteLater)
-    windows.worker.start()
+        # 显示初始等待信息
+        formWidget.chat_display.setPlainText(f"[等待中] 正在请求千问大模型...\n已等待 0 秒")
+
+        windows.worker = ModelWorker(messages, bailian_key, bailian_url)
+        windows.worker.response_received.connect(partial(handle_response, windows, formWidget))
+        windows.worker.error_occurred.connect(partial(handle_error, windows, formWidget))
+        windows.worker.finished.connect(windows.worker.deleteLater)
+        windows.worker.start()
+    except Exception as e:
+        logger.error(f'ask_model出错误了：{e}')
 
 def start_timer(windows, formWidget):
     windows.timer.start(1000)  # 每秒触发一次

@@ -44,13 +44,13 @@ def get(url):
     }
     return requests.get(url=url, headers=header)
 
-def exec(saleDay:str = ''):
+def exec(data_url, saleDay:str = ''):
     # 日期
     if saleDay == '':
         nowdate = DateTimeUtils.saleDate()
         saleDay = DateTimeUtils.Format_date(ymd=nowdate, format='%Y')
 
-    url = f'https://www.lisibao.top/wlw?table_key=China_Holidays&sealData={saleDay}'
+    url = f'{data_url}wlw?table_key=China_Holidays&sealData={saleDay}'
     response_data = get(url)
     row_data = []
     if response_data.status_code == 200:

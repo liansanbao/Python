@@ -20,12 +20,12 @@ def get(url):
     }
     return requests.get(url=url, headers=header, timeout=30)
 
-def exec(saleDay:str = ''):
+def exec(data_url, saleDay:str = ''):
     # 日期
     if saleDay == '':
         saleDay = DateTimeUtils.saleDate()
 
-    url = f'https://www.lisibao.top/wlw?table_key=STOCK_INFO_QUESTION&sealData={saleDay}'
+    url = f'{data_url}wlw?table_key=STOCK_INFO_QUESTION&sealData={saleDay}'
     response_data = get(url)
     row_data = []
     if response_data.status_code == 200:

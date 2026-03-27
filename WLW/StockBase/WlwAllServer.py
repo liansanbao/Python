@@ -21,7 +21,7 @@ def post(url, data):
     }
     return requests.post(url=url, headers=header, data=data, timeout=30)
 
-def exec(saleDay:str = ''):
+def exec(data_url, saleDay:str = ''):
     # 日期
     if saleDay == '':
         saleDay = DateTimeUtils.saleDate()
@@ -34,7 +34,7 @@ def exec(saleDay:str = ''):
     if yearMonthDom == yearMonth:
         siq_saleDay = ''
 
-    url = f'https://www.lisibao.top/wlwAll?table_key=WLW_ALL'
+    url = f'{data_url}wlwAll?table_key=WLW_ALL'
     data = {
         'D_SALEDAY': saleDay,
         # 'M_SALEDAY': saleDay,

@@ -30,12 +30,12 @@ class UIWLW(QMainWindow):
         super().__init__(parent)
 
 class LWLW():
-    def __init__(self, passKey):
+    def __init__(self, passKey, config):
         self.__mainWindow = None
         self.__mainform = None
         # 读取配置文件
-        self.config = configparser.ConfigParser()
-        self.config.read('_internal/config/config.ini', 'utf-8')  # 确保config.ini文件存在
+        self.config = config
+        # self.config.read('_internal/config/config.ini', 'utf-8')  # 确保config.ini文件存在
         # 获取系统标题
         self.window_title = self.config.get('系统标题', 'window_title', fallback='A股主流资金')
         # 获取系统标题
@@ -60,7 +60,7 @@ class LWLW():
             return
 
         # 风险个股数据采集
-        data_list = WaringStockServer.exec()
+        data_list = WaringStockServer.exec(self.config.get('ACCESS_SERVER', 'data_url'))
         if data_list and len(data_list) > 0:
             WaringStockServer.insertServere(data_list)
             ymd = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -77,7 +77,7 @@ class LWLW():
             return
 
         # 中国节假日数据采集
-        data_list = ChinaHolidaysModel.exec(year)
+        data_list = ChinaHolidaysModel.exec(self.config.get('ACCESS_SERVER', 'data_url'), year)
         if data_list:
             ChinaHolidaysModel.insert(year, data_list)
             ymd = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -174,7 +174,7 @@ class LWLW():
     # 事件绑定
     def actionSetting(self):
         # 菜单按钮(事件绑定)
-        MenuAction.menuActionSetting(self, self.__mainform)
+        MenuAction.menuActionSetting(self, self.__mainform, self.config.get('ACCESS_SERVER', 'data_url'))
         # 涨停板Tab(事件绑定)
         StockInfoAction.stockInfoActionSetting(self, self.__mainform)
         # 主力资金Tab(事件绑定)

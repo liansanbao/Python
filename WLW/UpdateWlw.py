@@ -52,16 +52,17 @@ class DownloadThread(QThread):
 
 # 软件自动更新
 class InstallerWindow(QMainWindow):
-    def __init__(self, dir_path, installPath):
+    def __init__(self, dir_path, installPath, server_url):
         super().__init__()
         self.singe_exe = dir_path
         self.install_path = installPath  # 默认路径^^^1^^^
         self.setup_ui()
         self.download_thread = None
+        self.server_url = server_url
 
     def isUpdae(self):
         try:
-            self.download_url = "https://www.lisibao.top/downloadWlw?pType=Online"
+            self.download_url = f"{self.server_url}downloadWlw?pType=Online"
             self.wlw_dict = {}
 
             with requests.get(self.download_url, stream=True, timeout=30) as r:
@@ -173,7 +174,6 @@ class InstallerWindow(QMainWindow):
 
     def start_download(self):
         self.btn_update.setEnabled(False)
-        # download_url = "https://www.lisibao.top/downloads/2"
         temp_path = os.path.join(os.getenv("TEMP"), f"{self.wlw_dict['name']}.{self.wlw_dict['version']}.exe")
         logger.info(f'download_path: {temp_path}')
 

@@ -228,9 +228,10 @@ class DatabaseWorker(QThread):
 
 # 数据采集
 class ProgressWindow(QMainWindow):
-    def __init__(self, opreationType:str='D'):
+    def __init__(self, data_url: str, opreationType:str='D'):
         super().__init__()
         self.data_list = []
+        self.data_url = data_url
         self.opreationType = opreationType
         self.saleDay = DateTimeUtils.saleDate() if not opreationType in ['P', 'N'] else DateTimeUtils.plateSaleDate()
         self.setup_ui()
@@ -352,23 +353,23 @@ class ProgressWindow(QMainWindow):
         logger.info(f'saleDay: {self.saleDay}')
         # 涨停板
         if self.opreationType == 'D':
-            self.data_list = DailyLimitServer.exec(saleDay=self.saleDay)
+            self.data_list = DailyLimitServer.exec(data_url = self.data_url, saleDay=self.saleDay)
         elif self.opreationType == 'M':
-            self.data_list = ZhuLiZiJinServer.exec(saleDay=self.saleDay)
+            self.data_list = ZhuLiZiJinServer.exec(data_url = self.data_url, saleDay=self.saleDay)
         elif self.opreationType == 'I':
-            self.data_list = IncreaseFiveServer.exec(saleDay=self.saleDay)
+            self.data_list = IncreaseFiveServer.exec(data_url = self.data_url, saleDay=self.saleDay)
         elif self.opreationType == 'N':
-            self.data_list = NoticesServer.exec(saleDay=self.saleDay)
+            self.data_list = NoticesServer.exec(data_url = self.data_url, saleDay=self.saleDay)
         elif self.opreationType == 'P':
-            self.data_list = PlateFundServer.exec(saleDay=self.saleDay)
+            self.data_list = PlateFundServer.exec(data_url = self.data_url, saleDay=self.saleDay)
             if self.data_list != None and len(self.data_list) > 0:
                 PlateFundServer.delete(self.saleDay)
         elif self.opreationType == 'S':
-            self.data_list = StockHoldingServer.exec('')
+            self.data_list = StockHoldingServer.exec(data_url = self.data_url, saleDay = '')
         elif self.opreationType == 'Q':
-            self.data_list = WaringStockServer.exec()
+            self.data_list = WaringStockServer.exec(data_url = self.data_url)
         elif self.opreationType == 'ALL':
-            self.data_list = WlwAllServer.exec()
+            self.data_list = WlwAllServer.exec(data_url = self.data_url)
             if self.data_list != None and len(self.data_list) > 0:
                 if 'P' in dict(self.data_list[0]).keys():
                     PlateFundServer.delete(self.saleDay)
