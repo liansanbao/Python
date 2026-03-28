@@ -69,8 +69,9 @@ def get_mac_address():
 
 # 密码找回--关键信息输入画面
 class InputInfoPage(QWidget):
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.config = config
         self.initUI()
         self.macAddress = get_mac_address()
 
@@ -136,7 +137,7 @@ class InputInfoPage(QWidget):
             Qt.WindowType.Window | Qt.WindowType.WindowMinimizeButtonHint | Qt.WindowType.WindowCloseButtonHint | Qt.WindowType.MSWindowsFixedSizeDialogHint);
 
     def return_action(self):
-        self.login = LoginWindow()
+        self.login = LoginWindow(self.config)
         self.login.show()
         self.hide()
 
@@ -488,12 +489,12 @@ class LoginWindow(QMainWindow):
             QMessageBox.critical(self, '异常', f'登录异常了: {str(e)}')
 
     def show_register(self):
-        self.register_window = RegisterForm()
+        self.register_window = RegisterForm(self.config)
         self.register_window.show()
         self.hide()
 
     def find_user(self):
-        self.findpassword = InputInfoPage()
+        self.findpassword = InputInfoPage(self.config)
         self.findpassword.show()
         self.hide()
 
@@ -510,8 +511,9 @@ class LoginWindow(QMainWindow):
 
 # 注册
 class RegisterForm(QWidget):
-    def __init__(self):
+    def __init__(self, config):
         super().__init__()
+        self.config = config
         self.initUI()
         self.macAddress = get_mac_address()
 
@@ -625,7 +627,7 @@ class RegisterForm(QWidget):
         return re.match(pattern, phone)
 
     def login_and_submit(self):
-        self.login_window = LoginWindow()
+        self.login_window = LoginWindow(self.config)
         self.login_window.show()
         self.hide()
 
@@ -687,7 +689,7 @@ class RegisterForm(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = InstallerWindow(dir_path.parent, dir_parent_path, server_url)
+    window = InstallerWindow(dir_path.parent, dir_parent_path, config)
     if window.isUpdae():
         window.show()
     else:

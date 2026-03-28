@@ -19,7 +19,7 @@ from PyQt6.QtCore import QThread, pyqtSignal, QSize
 from WLW.Tools.LoggingEx import logger
 
 # 软件版本
-CURRENT_VERSION=4.5
+CURRENT_VERSION=5.1
 
 # 下载
 class DownloadThread(QThread):
@@ -41,10 +41,11 @@ class DownloadThread(QThread):
 
                 with open(self.save_path, 'wb') as f:
                     for chunk in r.iter_content(chunk_size=8192):
-                        f.write(chunk)
-                        downloaded += len(chunk)
-                        progress = int(100 * downloaded / total_size)
-                        self.progress.emit(progress)
+                        if chunk:
+                            f.write(chunk)
+                            downloaded += len(chunk)
+                            progress = int((downloaded / total_size) * 100)
+                            self.progress.emit(progress)
 
                 self.finished.emit(self.save_path)
         except Exception as e:
@@ -52,13 +53,14 @@ class DownloadThread(QThread):
 
 # 软件自动更新
 class InstallerWindow(QMainWindow):
-    def __init__(self, dir_path, installPath, server_url):
+    def __init__(self, dir_path, installPath, config):
         super().__init__()
         self.singe_exe = dir_path
         self.install_path = installPath  # 默认路径^^^1^^^
         self.setup_ui()
         self.download_thread = None
-        self.server_url = server_url
+        self.config = config
+        self.server_url = self.config.get('ACCESS_SERVER', 'data_url', fallback='https://www.lisibao.top/')
 
     def isUpdae(self):
         try:
@@ -72,7 +74,9 @@ class InstallerWindow(QMainWindow):
                     break
 
             if self.wlw_dict:
-                if float(self.wlw_dict['version']) > CURRENT_VERSION:
+                server_version = float(self.wlw_dict['version'])
+                logger.info(f'最新版：{server_version}， 本地版：{CURRENT_VERSION}')
+                if server_version > CURRENT_VERSION:
                     return True
 
             return False
@@ -166,7 +170,7 @@ class InstallerWindow(QMainWindow):
     def start_main(self):
         try:
             from WLW.LoginSystem import LoginWindow
-            self.window = LoginWindow()
+            self.window = LoginWindow(self.config)
             self.window.show()
             self.close()
         except Exception as ex:
@@ -184,11 +188,12 @@ class InstallerWindow(QMainWindow):
         self.download_thread.start()
 
     def update_progress(self, value):
+        QMessageBox.critical(self, "下载失败", value)
         self.progress_bar.setValue(value)
 
     def on_download_finished(self, exe_path):
         try:
-            # 调用已经下载的安装软件，并设置安装路径为之前安装的路径
+            # # 调用已经下载的安装软件，并设置安装路径为之前安装的路径
             subprocess.Popen([exe_path, f'/D={self.install_path}'])
             # 退出自动更新画面
             sys.exit(0)

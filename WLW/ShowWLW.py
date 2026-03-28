@@ -174,7 +174,7 @@ class LWLW():
     # 事件绑定
     def actionSetting(self):
         # 菜单按钮(事件绑定)
-        MenuAction.menuActionSetting(self, self.__mainform, self.config.get('ACCESS_SERVER', 'data_url'))
+        MenuAction.menuActionSetting(self, self.__mainform)
         # 涨停板Tab(事件绑定)
         StockInfoAction.stockInfoActionSetting(self, self.__mainform)
         # 主力资金Tab(事件绑定)

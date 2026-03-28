@@ -18,23 +18,23 @@ from WLW.Database_loader import ProgressWindow
 from WLW.Tools.LoggingEx import logger
 from WLW.model import DataOpreationModel
 
-def menuActionSetting(windows, formWigdet, data_url):
+def menuActionSetting(windows, formWigdet):
     # 事件绑定 -- 采集所有
-    formWigdet.actionCrawlAll.triggered.connect(partial(ShowProgressWindow, windows, 'ALL', data_url))
+    formWigdet.actionCrawlAll.triggered.connect(partial(ShowProgressWindow, windows, 'ALL'))
     # 事件绑定 -- 日涨停
-    formWigdet.actionDailyLimit.triggered.connect(partial(ShowProgressWindow, windows, 'D', data_url))
+    formWigdet.actionDailyLimit.triggered.connect(partial(ShowProgressWindow, windows, 'D'))
     # 事件绑定 -- 主力资金
-    # formWigdet.actionMainCapital.triggered.connect(partial(ShowProgressWindow, windows, 'M', data_url))
+    # formWigdet.actionMainCapital.triggered.connect(partial(ShowProgressWindow, windows, 'M'))
     # 事件绑定 -- 涨幅(5%)以上
-    formWigdet.activeIncreaseFive.triggered.connect(partial(ShowProgressWindow, windows, 'I', data_url))
+    formWigdet.activeIncreaseFive.triggered.connect(partial(ShowProgressWindow, windows, 'I'))
     # 事件绑定 -- 板块资金
-    formWigdet.activePlateFund.triggered.connect(partial(ShowProgressWindow, windows, 'P', data_url))
+    formWigdet.activePlateFund.triggered.connect(partial(ShowProgressWindow, windows, 'P'))
     # 事件绑定 -- 机构持股
-    formWigdet.actionStockHolding.triggered.connect(partial(ShowProgressWindow, windows, 'S', data_url))
+    formWigdet.actionStockHolding.triggered.connect(partial(ShowProgressWindow, windows, 'S'))
     # 事件绑定 -- 公告
-    formWigdet.actionNotices.triggered.connect(partial(ShowProgressWindow, windows, 'N', data_url))
+    formWigdet.actionNotices.triggered.connect(partial(ShowProgressWindow, windows, 'N'))
     # 事件绑定 -- 风险个股
-    formWigdet.actionServerData.triggered.connect(partial(addaAtionServerData, windows, 'Q', data_url))
+    formWigdet.actionServerData.triggered.connect(partial(addaAtionServerData, windows, 'Q'))
     # 事件绑定 -- 使用说明
     formWigdet.actionHelp.triggered.connect(partial(addaAtionHelp, windows))
 
@@ -69,7 +69,7 @@ def addaAtionHelp(windows):
 
   有任何问题可以联系我。邮箱：981037985@qq.com 
 
-Version:4.5
+Version:5.1
     """
     msg = QMessageBox()
     msg.setIcon(QMessageBox.Icon.NoIcon)
@@ -83,7 +83,7 @@ Version:4.5
     msg.exec()
 
 # 风险个股
-def addaAtionServerData(windows, opreationType, data_url):
+def addaAtionServerData(windows, opreationType):
     try:
         yearMonth = datetime.datetime.today().strftime('%Y%m')
         # 交易日期
@@ -100,7 +100,7 @@ def addaAtionServerData(windows, opreationType, data_url):
             msg.setStandardButtons(QMessageBox.StandardButton.Ok)
             msg.exec()
             return
-
+        data_url = windows.config.get('ACCESS_SERVER', 'data_url')
         # 中国节假日数据采集
         windows.four = ProgressWindow(data_url, opreationType)
         # 窗体固定大小， 最大化无效
@@ -115,8 +115,9 @@ def addaAtionServerData(windows, opreationType, data_url):
         logger.error(f'风险个股处理时，发生错误: {str(ex)}')
 
 # 日涨停/主力资金进度条画面
-def ShowProgressWindow(windows, opreationType, data_url):
+def ShowProgressWindow(windows, opreationType):
     try:
+        data_url = windows.config.get('ACCESS_SERVER', 'data_url')
         # 检查是否可执行
         if show_messagebox(opreationType):
             windows.four = ProgressWindow(data_url, opreationType)
