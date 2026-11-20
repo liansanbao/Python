@@ -2,6 +2,7 @@ import configparser
 import datetime
 import multiprocessing
 import os
+import sys
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import *  # 从 PyQt6 中导入所需的类
@@ -30,7 +31,7 @@ class UIWLW(QMainWindow):
         super().__init__(parent)
 
 class LWLW():
-    def __init__(self, passKey, config):
+    def __init__(self, passKey, config, isOnline):
         self.__mainWindow = None
         self.__mainform = None
         # 读取配置文件
@@ -45,10 +46,11 @@ class LWLW():
         # 风险个股数据同步
         self.stock_info_question()
         # 登录用户
-
         self.passKey = passKey
         # exe文件夹
         self.parentPath = parent_dir
+        # 是否在线版
+        self.isOnline = isOnline
 
     # 风险个股数据同步
     def stock_info_question(self):
@@ -210,21 +212,34 @@ class LWLW():
     # 主处理
     def run(self):
         try:
-            # app = QApplication(sys.argv)
             logger.info('应用程序启动了......')
-            self.__init_mainWindow()
-            self.settingContent()
-            self.__mainWindow.show()
-            # sys.exit(app.exec_())
+            if self.isOnline == 0:
+                app = QApplication(sys.argv)
+                self.__init_mainWindow()
+                self.settingContent()
+                self.__mainWindow.show()
+                sys.exit(app.exec())
+            else:
+                self.__init_mainWindow()
+                self.settingContent()
+                self.__mainWindow.show()
+            logger.info('应用程序退出......')
         except Exception as e:
             logger.error(f'主程序出错误了：{e}')
             raise e
 
 if __name__ == '__main__':
     try:
+        # 读取配置文件
+        config = configparser.ConfigParser()
+        config.read('_internal/config/config.ini', 'utf-8')  # 确保config.ini文件存在
+        # 获取服务器URL
+        server_url = config.get('ACCESS_SERVER', 'data_url', fallback='http://192.168.56.100:8080/')
+        BASE_URL = f"{server_url}wlw"
+
         # windows打包必须，否则无线重复启动，linux上无须
         multiprocessing.freeze_support()
-        qApp = LWLW()
+        qApp = LWLW("WLW", config, 0)
         qApp.run()
     except Exception as ex:
         logger.error(f'主程序出错误了：{ex}')

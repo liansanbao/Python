@@ -502,7 +502,7 @@ class LoginWindow(QMainWindow):
         try:
             # windows打包必须，否则无线重复启动，linux上无须
             multiprocessing.freeze_support()
-            qApp = LWLW(passKey, self.config)
+            qApp = LWLW(passKey, self.config, 1)
             qApp.run()
             # 关闭登录窗口
             self.hide()
@@ -688,7 +688,13 @@ class RegisterForm(QWidget):
             QMessageBox.critical(self, '异常', f'注册异常了: {str(e)}')
 
 if __name__ == "__main__":
+    # from PyQt6.QtWidgets import QStyleFactory
+    # print(QStyleFactory.keys()) # 验证系统自带style
+
     app = QApplication(sys.argv)
+    # 在程序最开头，app创建之后加上
+    # 确认你用的是 **Fusion 风格**（Windows 默认风格对表头 highlight 兼容很差） windowsvista
+    # app.setStyle("Fusion")
     window = InstallerWindow(dir_path.parent, dir_parent_path, config)
     if window.isUpdae():
         window.show()

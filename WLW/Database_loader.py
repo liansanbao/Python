@@ -240,21 +240,21 @@ class ProgressWindow(QMainWindow):
 
     def setup_ui(self):
         if self.opreationType == 'D':
-            self.setWindowTitle("涨停板 数据采集加载器")
+            self.setWindowTitle("涨停板")
         elif self.opreationType == 'M':
-            self.setWindowTitle("资金流向 数据采集加载器")
+            self.setWindowTitle("资金流向")
         elif self.opreationType == 'I':
-            self.setWindowTitle("涨幅(5%)以上 数据采集加载器")
+            self.setWindowTitle("涨幅(5%)以上")
         elif self.opreationType == 'P':
-            self.setWindowTitle("板块资金 数据采集加载器")
+            self.setWindowTitle("板块资金")
         elif self.opreationType == 'S':
-            self.setWindowTitle("机构持股 数据采集加载器")
+            self.setWindowTitle("机构持股")
         elif self.opreationType == 'Q':
-            self.setWindowTitle("风险个股 数据采集加载器")
+            self.setWindowTitle("风险个股")
         elif self.opreationType == 'ALL':
-            self.setWindowTitle("采集所有 数据采集加载器")
+            self.setWindowTitle("采集所有")
         elif self.opreationType == 'N':
-            self.setWindowTitle("公告 数据采集加载器")
+            self.setWindowTitle("公告")
         else:
             self.setWindowTitle("数据采集加载器")
         self.resize(600, 200)
@@ -407,7 +407,7 @@ class ProgressWindow(QMainWindow):
             elapsed = time.time() - self.start_time
             speed = self.progress_bar.value() * 5 / elapsed
             remaining = (100 - self.progress_bar.value()) * elapsed / self.progress_bar.value()
-            self.speed_label.setText(f"速度: {speed:.1f} 条/秒")
+            self.speed_label.setText(f"速度: {speed:.0f} 条/秒")
             self.time_label.setText(f"已用时间: {int(elapsed)}秒")
             self.est_label.setText(f"剩余时间: {int(remaining)}秒")
 

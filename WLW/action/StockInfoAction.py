@@ -377,34 +377,34 @@ def getStockData(windows, formWidget):
 def setingStockTable(tableView):
     # 统一样式表设置
     style_sheet = f"""
-                    /* 表格主体样式 */
-                    QTableView {{
-                        border: 1px solid #d0d0d0;
-                        gridline-color: #e0e0e0;
-                        alternate-background-color: #f8f8f8;
-                        selection-background-color: #2a82da;
-                        selection-color: white;
-                    }}
+        /* 表格主体样式 */
+        QTableView {{
+            border: 1px solid #d0d0d0;
+            gridline-color: #e0e0e0;
+            alternate-background-color: #f8f8f8;
+            selection-background-color: #2a82da;
+            selection-color: white;
+        }}
 
-                    /* 表头样式 */
-                    QHeaderView::section {{
-                        background-color: #f0f0f0;
-                        border: 1px solid #c0c0c0;
-                        padding: 1px;
-                        font-weight: bold;
-                    }}
+        /* 表头样式 */
+        QHeaderView::section {{
+            background-color: #f0f0f0;
+            border: 1px solid #c0c0c0;
+            padding: 1px;
+            font-weight: bold;
+        }}
 
-                    /* 单元格悬停效果 */
-                    QTableView::item:hover {{
-                        background-color: #ddeeff;
-                    }}
+        /* 单元格悬停效果 */
+        QTableView::item:hover {{
+            background-color: #ddeeff;
+        }}
 
-                    /* 选中行样式 */
-                    QTableView::item:selected {{
-                        background-color: #2a82da;
-                        color: white;
-                    }}
-                """
+        /* 选中行样式 */
+        QTableView::item:selected {{
+            background-color: #2a82da;
+            color: white;
+        }}
+    """
     tableView.setStyleSheet(style_sheet)
 
     # 设置样式表添加边框
