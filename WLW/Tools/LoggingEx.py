@@ -27,6 +27,7 @@ config.read('./_internal/config/config.ini', 'utf-8')  # 确保config.ini文件�
 log_dir = config.get('LOGGING', 'log_dir', fallback='_internal\\log')
 max_size = config.getint('LOGGING', 'max_bytes', fallback=5*1024*1024)
 backup_count = config.getint('LOGGING', 'backup_count', fallback=3)
+log_level = config.get('LOGGING', 'level', fallback='INFO').upper()
 
 # 确保日志目录存在
 os.makedirs(log_dir, exist_ok=True)
@@ -49,7 +50,7 @@ handler.setFormatter(formatter)
 
 # 配置根logger
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger.setLevel(getattr(logging, log_level, logging.INFO))
 logger.addHandler(handler)
 
 class LoggingEx(logging.Handler):

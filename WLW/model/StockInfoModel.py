@@ -18,17 +18,23 @@ def getStockInfoWLWData(stockInfoCondition):
                        SIW.SUO_SHU_HANG_YE,
                        SIW.STOCK_NO,
                        SIW.STOCK_NAME,
-                       SIW.ZHANG_DIE_FU,
+                       CASE
+                        WHEN SIW.ZHANG_DIE_FU <> 0 THEN SIW.ZHANG_DIE_FU || '%'
+                        ELSE SIW.ZHANG_DIE_FU
+                       END AS ZHANG_DIE_FU,
                        SIW.ZUI_XING_JIA,
                        COALESCE(CASE SIW.LIAN_BAN_SHU
                           WHEN 1 THEN ' 首板'
                           ELSE SIW.LIAN_BAN_SHU || '连板'
                        END, '') AS LIAN_BAN_SHU,
-                       SIW.ZHA_BAN_CI_SHU,
+                       SIW.ZHA_BAN_CI_SHU || '次' AS ZHA_BAN_CI_SHU,
                        COALESCE(SIQ.STOCK_TYPE_NAME, '无风险') AS STOCK_TYPE_NAME,
                        SIW.YOU_ZI_YOU_WU,
-                       SIW.CHENG_JIAO_E,
-                       SIW.HUAN_SHOU_LV,
+                       SIW.CHENG_JIAO_E || '亿' AS CHENG_JIAO_E,
+                       CASE
+                        WHEN SIW.HUAN_SHOU_LV <> 0 THEN SIW.HUAN_SHOU_LV || '%'
+                        ELSE SIW.HUAN_SHOU_LV
+                       END AS HUAN_SHOU_LV,
                        SIW.FIRST_FENG_BAN_TIME,
                        SIW.LAST_FENG_BAN_TIME,
                        SIW.FENG_BAN_JIN_E,

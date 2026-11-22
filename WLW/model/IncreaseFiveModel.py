@@ -26,7 +26,7 @@ def getIncreaseFiveWLWData(increaseFiveCondition, tableName = 'GRIDIST_STOCK'):
                GS.F12,
                GS.F14,
                GS.F3,
-               GS.F2,
+               GS.F2 || '元' AS F2,
                COALESCE(SIQ.STOCK_TYPE_NAME, '无风险') AS STOCK_TYPE_NAME,
                GS.F4,
                GS.F5,

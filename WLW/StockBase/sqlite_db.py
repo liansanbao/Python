@@ -304,6 +304,7 @@ class SQLiteDB:
         try:
             self.begin_transaction()
             cursor = self.connection.cursor()
+            logger.info(f"表({table})数据登录：{query}")
             cursor.executemany(query, data)
             self.commit_transaction()
             return True
