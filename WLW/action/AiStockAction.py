@@ -608,14 +608,15 @@ def getIncreaseFiveData(windows, formWidget, indexNo, hangQingDateFrom, hangQing
         # 数据显示处理
         showTableData(page_data, windows, formWidget, indexNo, 21, HEADER_INCREASE, SHOW_INCREASE_HEADER,
                       IncreaseCustomProxyModel())
-        # 涨幅(4%)以上--数据显示设定
-        IncreaseFiveAction.setingTable(formWidget.aiStock_Table)
     else:
         # 分页按钮不显示
         formWidget.aiStock_upPlate.setVisible(False)
         formWidget.aiStock_nextPlate.setVisible(False)
         # 页码格式化
         formWidget.aiStock_PageNo.setText('')
+
+    # 涨幅(4%)以上--数据显示设定
+    IncreaseFiveAction.setingTable(formWidget.aiStock_Table)
 
 # 数据处理
 def editAiIncreaseFiveData(showIncreaseFiveData) -> List:
@@ -669,8 +670,6 @@ def getPlateFundData(windows, formWidget, activateType, hyType, indexNo, hangQin
         # 数据显示处理
         showTableData(data, windows, formWidget, indexNo, 18, HEADER_PLATE_FUND, SHOW_PLATE_FUND_HEADER,
                       PlateFundCustomProxyModel())
-        # 概念--数据显示设定
-        PlateFundAction.setingPlateFundTable(formWidget.aiStock_Table)
     else:
         # 分页按钮不显示
         formWidget.aiStock_upPlate.setVisible(False)
@@ -678,6 +677,8 @@ def getPlateFundData(windows, formWidget, activateType, hyType, indexNo, hangQin
         # 页码格式化
         formWidget.aiStock_PageNo.setText('')
 
+    # 概念--数据显示设定
+    PlateFundAction.setingPlateFundTable(formWidget.aiStock_Table)
 
 # ====================== 数据源：涨停板 ======================
 def getStockData(windows, formWidget, indexNo, saleDayFrom, saleDayTo, stockNo, stockName):
@@ -706,14 +707,15 @@ def getStockData(windows, formWidget, indexNo, saleDayFrom, saleDayTo, stockNo, 
         # 数据显示处理
         showTableData(page_data, windows, formWidget, indexNo, 19, HEADER_DAILY_LIMIT, SHOW_DAILY_LIMIT_HEADER,
                       StockCustomProxyModel())
-        # 涨停板Tab--数据显示设定
-        StockInfoAction.setingStockTable(formWidget.aiStock_Table)
     else:
         # 分页按钮不显示
         formWidget.aiStock_upPlate.setVisible(False)
         formWidget.aiStock_nextPlate.setVisible(False)
         # 页码格式化
         formWidget.aiStock_PageNo.setText('')
+
+    # 涨停板Tab--数据显示设定
+    StockInfoAction.setingStockTable(formWidget.aiStock_Table)
 
 # ====================== 表格渲染（统一入口） ======================
 def showTableData(page_data: dict, windows, formWidget, indexNo, simCount, headerTitles, showHeaderLables, customSortmodel):

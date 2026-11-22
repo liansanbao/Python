@@ -21,7 +21,7 @@ a = Analysis(
         ('_internal\\pyecharts\\datasets\\*', 'pyecharts\\datasets'),
         ('_internal\\pyecharts\\render\\templates', 'pyecharts\\render\\templates')
     ],
-    hiddenimports=['StockBase', 'model', 'action'],#如果你的自定义模块依赖于其他未被自动检测到的模块，你可以在 hiddenimports 中添加它们：
+    hiddenimports=['WLW.StockBase', 'WLW.model', 'WLW.action',],#如果你的自定义模块依赖于其他未被自动检测到的模块，你可以在 hiddenimports 中添加它们：
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -42,7 +42,10 @@ a = Analysis(
         'pyqt6.qtopengl',
         'win32com',
         'pythoncom',
-        'pywintypes'
+        'pywintypes',
+        'pygame',
+        'pysqlite2',
+        'psycopg2'
     ],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,

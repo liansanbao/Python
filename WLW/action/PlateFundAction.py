@@ -334,9 +334,9 @@ def AddClickedPlateFundSubmit(windows, formWigdet, activateType):
 def editPlateFundTable(windows, formWigdet, activateType: str = 'S'):
     # 主力资金Tab--数据绑定
     getPlateFundData(windows, formWigdet, activateType)
-    if windows.showPlateFundData:
-        # 主力资金Tab--数据显示设定
-        setingPlateFundTable(formWigdet.plateFund_showStockTable)
+    # if windows.showPlateFundData:
+    # 主力资金Tab--数据显示设定
+    setingPlateFundTable(formWigdet.plateFund_showStockTable)
     # 板块资金--主力B金额条形图
     editPlateFundCharts(windows, formWigdet, activateType)
 
