@@ -69,7 +69,7 @@ def addaAtionHelp(windows):
 
   有任何问题可以联系我。邮箱：981037985@qq.com 
 
-Version:5.2
+Version:5.3
     """
     msg = QMessageBox()
     msg.setIcon(QMessageBox.Icon.NoIcon)

@@ -448,6 +448,7 @@ def setingStockTable(tableView):
             padding: 0px;
             font-weight: normal;
             color: #444444;
+            min-width:45px;
         }
     
         QHeaderView::section:vertical:hover {
@@ -522,14 +523,8 @@ def setingStockTable(tableView):
     tableView.setColumnWidth(14, 90)
     tableView.setColumnWidth(15, 60)
     tableView.setColumnWidth(16, 90)
-    tableView.setColumnWidth(17, 206)
-    # 统计行数
-    rowCount = tableView.model().rowCount()
-    # 行数 小于 10
-    if rowCount < 10:
-        tableView.setColumnWidth(18, 92)
-    else:
-        tableView.setColumnWidth(18, 85)
+    tableView.setColumnWidth(17, 189)
+    tableView.setColumnWidth(18, 85)
 
     # 第20列隐藏 机构数据采集日期
     tableView.setColumnHidden(19, True)
@@ -538,14 +533,14 @@ def setingStockTable(tableView):
     tableView.setSortingEnabled(True)
     # 设置表格为整行选择
     tableView.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+
     # 禁止列宽调整
     tableView.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
     tableView.horizontalHeader().setSectionsMovable(False)
+    # 获取列宽 用来手动调节每列列宽
+    # tableView.horizontalHeader().sectionResized.connect(
+    #     lambda index, old_size, new_size: print(f"列{index}宽度变为{new_size}"))
 
     # 替换你原来的 RowLineDelegate，换成这个StockColorDelegate 内容字体样式处理 此方案搁置===============
     # tableView.setItemDelegate(StockColorDelegate(tableView))
     # ==========================================================================================
-
-    # 获取列宽 用来手动调节每列列宽
-    # tableView.horizontalHeader().sectionResized.connect(
-    #     lambda index, old_size, new_size: print(f"列{index}宽度变为{new_size}"))

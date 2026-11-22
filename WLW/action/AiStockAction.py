@@ -12,15 +12,15 @@ from typing import Dict, Any, List, Optional
 
 import pandas
 from PyQt6 import QtCore, QtGui
-from PyQt6.QtCore import QDate, QTimer, QThread, pyqtSignal
-from PyQt6.QtGui import QStandardItemModel, QIcon, QPixmap, QFont, QTextCursor
+from PyQt6.QtCore import QDate, QTimer, QThread, pyqtSignal, Qt
+from PyQt6.QtGui import QStandardItemModel, QIcon, QPixmap, QFont, QTextCursor, QColor
 from PyQt6.QtWidgets import (
     QVBoxLayout, QTextEdit, QHBoxLayout, QLineEdit, QPushButton, QMessageBox
 )
 from openai import OpenAI
 
 from WLW.StockBase import DateTimeUtils
-from WLW.Tools.CommonUtils import setQStandardItem
+from WLW.Tools.CommonUtils import setQStandardItem, setQStandardItemPlateFund
 from WLW.Tools.LoggingEx import logger
 from WLW.action import StockInfoAction, PlateFundAction, IncreaseFiveAction
 from WLW.action.MultiDailySortProxyModel import CustomProxyModel as StockCustomProxyModel
@@ -34,13 +34,13 @@ from WLW.model.StockInfoCondition import StockInfoCondition
 # ====================== 常量定义区 ======================
 # 涨停板
 HEADER_DAILY_LIMIT = [
-    '交易日期', '所属行业', '股票No', '名称', '涨跌幅(%)', '最新价(元)', '连板数', '炸板次数',
-    '风险种类', '游资', '成交额(亿)', '换手率(%)', 'F封板时间', 'L封板时间', '封板资金',
+    '交易日期', '所属行业', '股票No', '名称', '涨跌幅', '最新价', '连板数', '炸板次数',
+    '风险种类', '游资', '成交额', '换手率', 'F封板时间', 'L封板时间', '封板资金',
     '涨停统计', '涨停主题', '涨停原因', '机构持股数量', 'hidden'
 ]
 LIMIT_AI_KEYS = [
-    '交易日期', '所属行业', '股票代码', '名称', '涨跌幅(%)', '最新价(元)', '连板数', '炸板次数',
-    '风险种类', '游资', '成交额(亿)', '换手率(%)', 'F封板时间', 'L封板时间', '封板资金',
+    '交易日期', '所属行业', '股票代码', '名称', '涨跌幅', '最新价', '连板数', '炸板次数',
+    '风险种类', '游资', '成交额', '换手率', 'F封板时间', 'L封板时间', '封板资金',
     '涨停统计', '涨停主题', '涨停原因', '机构持股数量'
 ]
 SHOW_DAILY_LIMIT_HEADER = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
@@ -600,7 +600,7 @@ def getIncreaseFiveData(windows, formWidget, indexNo, hangQingDateFrom, hangQing
     # 设定项目值显示
     if windows.showAiStockData:
         # 总件数format
-        formWidget.aiStock_count_number.setText(f'一共 {len(windows.showAiStockData)} 件数据')
+        formWidget.aiStock_count_number.setText(f'共 {len(windows.showAiStockData)} 条')
         # 页码初始化
         windows.current_AiStockPage = 1
         # 分页处理
@@ -660,7 +660,7 @@ def getPlateFundData(windows, formWidget, activateType, hyType, indexNo, hangQin
     # 设定项目值显示
     if windows.showAiStockData:
         # 总件数format
-        formWidget.aiStock_count_number.setText(f'一共 {len(windows.showAiStockData)} 件数据')
+        formWidget.aiStock_count_number.setText(f'共 {len(windows.showAiStockData)} 条')
 
         # 页码初始化
         windows.current_AiStockPage = 1
@@ -697,7 +697,7 @@ def getStockData(windows, formWidget, indexNo, saleDayFrom, saleDayTo, stockNo, 
     # 设定项目值显示
     if windows.showAiStockData:
         # 总件数format
-        formWidget.aiStock_count_number.setText(f'一共 {len(windows.showAiStockData)} 件数据')
+        formWidget.aiStock_count_number.setText(f'共 {len(windows.showAiStockData)} 条')
 
         # 页码初始化
         windows.current_AiStockPage = 1
@@ -723,15 +723,97 @@ def showTableData(page_data: dict, windows, formWidget, indexNo, simCount, heade
     windows.aiStockModel.setHorizontalHeaderLabels(headerTitles)
     if page_data['data']:
         for row, item in enumerate(page_data['data']):
+            row_items = []
             # 涨停板
-            if indexNo == 0 or indexNo == 3:
-                windows.aiStockModel.appendRow(
-                    [setQStandardItem(str(item[value]), str(item[value])) for value in showHeaderLables])
+            if indexNo == 0:
+                for col_idx, key in enumerate(showHeaderLables):
+                    cell_text = str(item[key])
+                    std_item = setQStandardItem(cell_text, cell_text)
+                    # ========== 文字居中 ==========
+                    std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                    # 预计算颜色
+                    if col_idx in (2, 3):
+                        # 股票代码、名称蓝色
+                        std_item.setForeground(QColor("blue"))
+                    elif col_idx == 4:  # 涨跌幅
+                        try:
+                            val = float(cell_text.replace("%", "").replace(",", ""))
+                            if val >= 0:
+                                std_item.setForeground(QColor("red"))
+                            else:
+                                std_item.setForeground(QColor("#009455"))
+                        except:
+                            pass
+                    elif col_idx == 5:  # 最新价
+                        std_item.setForeground(QColor("red"))
+                    # ✅ 加粗：F封板时间、L封板时间
+                    elif col_idx in (12, 13):
+                        bold_font = QFont()
+                        bold_font.setBold(True)
+                        std_item.setFont(bold_font)
+                    row_items.append(std_item)
             # 概念/板块
             elif indexNo == 1 or indexNo == 2:
-                windows.aiStockModel.appendRow(
-                    [PlateFundAction.setQStandardItem(str(item[value]), value) for value in showHeaderLables])
+                # windows.aiStockModel.appendRow(
+                #     [PlateFundAction.setQStandardItem(str(item[value]), value) for value in showHeaderLables])
+                for col_idx, key in enumerate(showHeaderLables):
+                    cell_text = str(item[key])
+                    std_item = setQStandardItemPlateFund(cell_text, key)
+                    # ========== 文字居中 ==========
+                    std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
 
+                    # 预计算颜色
+                    if col_idx in (1, 2):
+                        # 股票代码、名称蓝色
+                        std_item.setForeground(QColor("blue"))
+                    elif col_idx in (4, 5, 6, 13, 16, 17):  # 涨跌幅
+                        try:
+                            val = float(cell_text.replace("亿", "").replace("元", "").replace("%", "").replace(",", ""))
+                            if val >= 0:
+                                std_item.setForeground(QColor("red"))
+                            else:
+                                std_item.setForeground(QColor("#009455"))
+                        except:
+                            pass
+                    # ✅ 加粗：F封板时间、L封板时间
+                    elif col_idx in (10,):
+                        bold_font = QFont()
+                        bold_font.setBold(True)
+                        std_item.setFont(bold_font)
+
+                    row_items.append(std_item)
+            elif indexNo == 3:
+                # 涨幅4%以上
+                # windows.aiStockModel.appendRow(
+                #     [setQStandardItem(str(item[value]), str(item[value])) for value in showHeaderLables])
+                for col_idx, key in enumerate(showHeaderLables):
+                    cell_text = str(item[key])
+                    std_item = setQStandardItem(cell_text, cell_text)
+                    # ========== 文字居中 ==========
+                    std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                    # 预计算颜色
+                    if col_idx in (0, 1):
+                        # 股票代码、名称蓝色
+                        std_item.setForeground(QColor("blue"))
+                    elif col_idx in (4, 7):  # 涨跌幅
+                        try:
+                            val = float(cell_text.replace("%", "").replace(",", ""))
+                            if val >= 0:
+                                std_item.setForeground(QColor("red"))
+                            else:
+                                std_item.setForeground(QColor("#009455"))
+                        except:
+                            pass
+                    # ✅ 加粗：F封板时间、L封板时间
+                    elif col_idx in (14, 16):
+                        bold_font = QFont()
+                        bold_font.setBold(True)
+                        std_item.setFont(bold_font)
+
+                    row_items.append(std_item)
+            windows.aiStockModel.appendRow(row_items)
     # 页码格式化
     formWidget.aiStock_PageNo.setText(f' 第 {page_data["current_page"]} 页 ')
     if page_data["current_page"] == 1:
@@ -755,6 +837,16 @@ def showTableData(page_data: dict, windows, formWidget, indexNo, simCount, heade
     formWidget.aiStock_Table.setModel(customSortmodel)
     # data 显示
     formWidget.aiStock_Table.setVisible(True)
+
+    # ===================== 新增：连续行号 =======================================================
+    page_no = page_data["current_page"]
+    page_size = page_data["page_size"]
+    offset = (page_no - 1) * page_size
+    v_header = formWidget.aiStock_Table.verticalHeader()
+    if hasattr(v_header, "setStartOffset"):
+        logger.info(f"page_no: {page_no}, page_size: {page_size}, offset: {offset}")
+        v_header.setStartOffset(offset)
+    # ==========================================================================================
 
 # 事件绑定 -- 清除按钮事件
 def AddClickedNoticClear(windows, formWidget):

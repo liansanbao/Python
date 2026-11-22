@@ -7,6 +7,13 @@
 from PyQt6.QtCore import QSortFilterProxyModel
 
 class BaseProxyModel(QSortFilterProxyModel):
+    # 统一处理：None转为空字符串
+    def get_safe_data(self, index):
+        val = index.data()
+        if val is None:
+            return ""
+        return val
+
     def convertOtherStr(self, keyStr: str = ''):
         if keyStr == '-' or keyStr == '':
             return float(0)
@@ -20,6 +27,8 @@ class BaseProxyModel(QSortFilterProxyModel):
             return float(s.replace('元', ''))
         elif '%' in s:
             return float(s.replace('%', ''))
+        elif '次' in s:
+            return float(s.replace('次', ''))
         else:
             return float(s)
         # return keyStr.replace('%', '').replace('亿', '').replace('万', '').replace('元', '')

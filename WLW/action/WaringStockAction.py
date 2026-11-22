@@ -4,6 +4,7 @@
 # @Author : 连三保
 # @Version: V 1.0
 # @File : WaringStockAction.py
+# @uptime: 2026/11/21 17:04
 # @desc : 风险个股Tab数据处理
 
 from functools import partial
@@ -16,6 +17,7 @@ from PyQt6.QtWidgets import *   # 从 PyQt6 中导入所需的类
 from WLW.StockBase import DateTimeUtils
 from WLW.Tools.CommonUtils import setQStandardItem
 from WLW.Tools.LoggingEx import logger
+from WLW.action.CustomVerticalHeader import CustomVerticalHeader
 from WLW.action.MultiWaringSortProxyModel import CustomProxyModel
 from WLW.model import WaringStockModel
 from WLW.model.WaringStockCondition import WaringStockCondition
@@ -101,7 +103,24 @@ def showTableData(data, windows, formWigdet):
         [ '股票No', '名称', '个股日期', '所属行业','风险种类', '更新日期', '安全分', '预警类型', '预警详情'])
     # 设定项目值显示
     for row, item in enumerate(data['data']):
-        windows.waringStockModel.appendRow([setQStandardItem(str(value), str(value)) for value in item])
+        # windows.waringStockModel.appendRow([setQStandardItem(str(value), str(value)) for value in item])
+        row_items = []
+        for value, key in enumerate(item):
+            std_item = setQStandardItem(str(key), str(key))
+            if value in (7, 8):
+                # 字体加粗
+                bold_font = QFont()
+                bold_font.setBold(True)
+                std_item.setFont(bold_font)
+                # 红色 #d92121
+                std_item.setForeground(QColor("#d92121"))
+                # ========== 文字居左 ==========
+                std_item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+            else:
+                # ========== 文字居中 ==========
+                std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            row_items.append(std_item)
+        windows.waringStockModel.appendRow(row_items)
 
     # 页码格式化
     formWigdet.plateWaringNo.setText(f' 第 {data["current_page"]} 页 ')
@@ -126,6 +145,15 @@ def showTableData(data, windows, formWigdet):
     customSortmodel = CustomProxyModel()
     customSortmodel.setSourceModel(windows.waringStockModel)
     formWigdet.waring_showStockTable.setModel(customSortmodel)
+    # ===================== 新增：连续行号 =======================================================
+    page_no = data["current_page"]
+    page_size = data["page_size"]
+    offset = (page_no - 1) * page_size
+    v_header = formWigdet.waring_showStockTable.verticalHeader()
+    if hasattr(v_header, "setStartOffset"):
+        logger.info(f"page_no: {page_no}, page_size: {page_size}, offset: {offset}")
+        v_header.setStartOffset(offset)
+    # ==========================================================================================
 
 # 分页处理
 def get_page(cached_data, page: int, page_size: int) -> Dict[str, Any]:
@@ -161,36 +189,72 @@ def editWaringStockTable(windows, formWigdet):
 # 风险个股Tab--数据显示设定
 def setingWaringStockTable(waringTable):
     # 统一样式表设置
-    style_sheet = f"""
-                    /* 表格主体样式 */
-                    QTableView {{
-                        border: 1px solid #d0d0d0;
-                        gridline-color: #e0e0e0;
-                        alternate-background-color: #f8f8f8;
-                        selection-background-color: #2a82da;
-                        selection-color: white;
-                    }}
+    style_sheet = """
+            QTableView {
+                border: none;
+                alternate-background-color: #f4f6f9;
+                selection-background-color: #1967c2;
+                selection-color: white;
+            }
+            /* ========== 顶部水平表头（列标题，保留原有样式不变） ========== */
+            QHeaderView::section:horizontal {
+                background-color: #dce3ec;
+                border: none;
+                padding: 1px;
+                font-weight: bold;
+                color: #111111;
+            }
 
-                    /* 表头样式 */
-                    QHeaderView::section {{
-                        background-color: #f0f0f0;
-                        border: 1px solid #c0c0c0;
-                        padding: 2px;
-                        font-weight: bold;
-                    }}
+            QHeaderView::section:horizontal:hover {
+                background-color: #c8d2df;
+            }
 
-                    /* 单元格悬停效果 */
-                    QTableView::item:hover {{
-                        background-color: #ddeeff;
-                    }}
+            QHeaderView::section:horizontal:selected {
+                color: #dd2222;
+            }
+            /* ========== 垂直表头【行号列：清除全部样式】 ========== */
+            QHeaderView::section:vertical {
+                background-color: transparent;
+                border: none;
+                padding: 0px;
+                font-weight: normal;
+                color: #444444;
+                min-width:45px;
+            }
 
-                    /* 选中行样式 */
-                    QTableView::item:selected {{
-                        background-color: #2a82da;
-                        color: white;
-                    }}
-                """
+            QHeaderView::section:vertical:hover {
+                background-color: transparent;
+            }
+
+            QTableView::item:hover {
+                background-color: #d7e6f8;
+            }
+
+            QTableView::item:selected {
+                background-color: #1967c2;
+                color: white;
+            }
+            /* 左上角角落按钮，也跟着行号一起透明，统一观感 */
+            QTableCornerButton::section {
+                border: none;
+                background-color: transparent;
+            }
+        """
     waringTable.setStyleSheet(style_sheet)
+
+    # ========= 【重点修改这里】只初次替换一次垂直表头，不要重复新建 =====================================
+    vh = waringTable.verticalHeader()
+    if not isinstance(vh, CustomVerticalHeader):
+        # 只有原生表头的时候，才替换一次
+        new_vh = CustomVerticalHeader(waringTable)
+        waringTable.setVerticalHeader(new_vh)
+        # 绑定点击事件，只绑定一次
+        from PyQt6.QtCore import QItemSelectionModel
+        new_vh.sectionClicked.connect(lambda row: waringTable.selectionModel().select(
+            waringTable.model().index(row, 0),
+            QItemSelectionModel.SelectionFlag.Rows | QItemSelectionModel.SelectionFlag.ClearAndSelect
+        ))
+    # ==========================================================================================
 
     # 设置样式表添加边框
     waringTable.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)  # 禁止调整行高
@@ -204,8 +268,10 @@ def setingWaringStockTable(waringTable):
     # waringTable.verticalHeader().setDefaultAlignment(Qt.AlignmentFlag.AlignCenter)  # 设置行头文本居中显示（可选）
     # 列设置保持可调整（默认状态）
     # waringTable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
+    # 去掉网格线
+    waringTable.setShowGrid(False)
     # 设置行交替
-    # waringTable.setAlternatingRowColors(True)
+    waringTable.setAlternatingRowColors(True)
 
     # 禁止编辑
     waringTable.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -218,23 +284,17 @@ def setingWaringStockTable(waringTable):
     waringTable.setColumnWidth(4, 72)
     waringTable.setColumnWidth(5, 114)
     waringTable.setColumnWidth(6, 68)
-    waringTable.setColumnWidth(7, 110)
-    # 统计行数
-    rowCount = waringTable.model().rowCount()
-    # 行数 小于 10
-    if rowCount < 10:
-        waringTable.setColumnWidth(8, 792)
-    else:
-        waringTable.setColumnWidth(8, 785)
+    waringTable.setColumnWidth(7, 215)
+    waringTable.setColumnWidth(8, 665)
 
     # 启用数据排序和过滤
     waringTable.setSortingEnabled(True)
     # 设置表格为整行选择 QAbstractItemView.SelectionBehavior(1) 单元格选中：QAbstractItemView.SelectionBehavior(0) 列选中：QAbstractItemView.SelectionBehavior(2)
     waringTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior(1))
+
     # 禁止列宽调整
     waringTable.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
     waringTable.horizontalHeader().setSectionsMovable(False)
-
     # 获取列宽 用来手动调节每列列宽
     # waringTable.horizontalHeader().sectionResized.connect(
     #     lambda index, old_size, new_size: print(f"列{index}宽度变为{new_size}"))
@@ -281,7 +341,7 @@ def getWaringStockData(windows, formWigdet):
         # 页码格式化
         formWigdet.plateWaringNo.setText('')
     # 总件数format
-    formWigdet.waring_count_number.setText(f'一共 {count} 件数据')
+    formWigdet.waring_count_number.setText(f'共 {count} 条')
     # data 不显示
     formWigdet.waring_showStockTable.setVisible(enableFlag)
 

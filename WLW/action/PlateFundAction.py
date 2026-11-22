@@ -4,6 +4,8 @@
 # @Version: V 1.0
 # @File : PlateFundAction.py
 # @desc : 板块资金显示
+# @uptime: 2026/11/21 12:44
+
 import datetime
 import os
 from functools import partial
@@ -22,7 +24,9 @@ from pyecharts.options import DataZoomOpts
 
 from WLW.StockBase import DateTimeUtils
 from WLW.StockBase.DateTimeUtils import get_quarter_dates
+from WLW.Tools.CommonUtils import str_to_float, setQStandardItemPlateFund
 from WLW.Tools.LoggingEx import logger
+from WLW.action.CustomVerticalHeader import CustomVerticalHeader
 from WLW.action.MultiPlateFundSortProxyModel import CustomProxyModel
 from WLW.action.RowMenuAction import create_menu
 from WLW.action.WebEngineViewEx import WebEngineView
@@ -192,7 +196,36 @@ def showTableData(data, windows, formWigdet):
     showHeaderLables = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     if data['data']:
         for row, item in enumerate(data['data']):
-            windows.plateFundShowModel.appendRow([setQStandardItem(str(item[value]), value) for value in showHeaderLables])
+            # windows.plateFundShowModel.appendRow([setQStandardItem(str(item[value]), value) for value in showHeaderLables])
+            row_items = []
+            for col_idx, key in enumerate(showHeaderLables):
+                cell_text = str(item[key])
+                std_item = setQStandardItemPlateFund(cell_text, key)
+                # ========== 文字居中 ==========
+                std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                # 预计算颜色
+                if col_idx in (1, 2):
+                    # 股票代码、名称蓝色
+                    std_item.setForeground(QColor("blue"))
+                elif col_idx in (4, 5, 6, 13, 16, 17):  # 涨跌幅
+                    try:
+                        val = float(cell_text.replace("亿", "").replace("元", "").replace("%", "").replace(",", ""))
+                        if val >= 0:
+                            std_item.setForeground(QColor("red"))
+                        else:
+                            std_item.setForeground(QColor("#009455"))
+                    except:
+                        pass
+
+                # ✅ 加粗：F封板时间、L封板时间
+                elif col_idx in (10, ):
+                    bold_font = QFont()
+                    bold_font.setBold(True)
+                    std_item.setFont(bold_font)
+
+                row_items.append(std_item)
+            windows.plateFundShowModel.appendRow(row_items)
 
     # 页码格式化
     formWigdet.plateFundPageNo.setText(f' 第 {data["current_page"]} 页 ')
@@ -217,6 +250,15 @@ def showTableData(data, windows, formWigdet):
     customSortmodel = CustomProxyModel()
     customSortmodel.setSourceModel(windows.plateFundShowModel)
     formWigdet.plateFund_showStockTable.setModel(customSortmodel)
+    # ===================== 新增：连续行号 =======================================================
+    page_no = data["current_page"]
+    page_size = data["page_size"]
+    offset = (page_no - 1) * page_size
+    v_header = formWigdet.plateFund_showStockTable.verticalHeader()
+    if hasattr(v_header, "setStartOffset"):
+        logger.info(f"page_no: {page_no}, page_size: {page_size}, offset: {offset}")
+        v_header.setStartOffset(offset)
+    # ==========================================================================================
 
 # 分页处理
 def get_page(cached_data, page: int, page_size: int) -> Dict[str, Any]:
@@ -540,84 +582,88 @@ def getPlateFundData(windows, formWigdet, activateType):
     formWigdet.plateFundInput.setText('净流入: ' + convert_unit(plateFundInput) + '亿')
     formWigdet.plateFundOutput.setText('净流出: ' + convert_unit(plateFundOutput) + '亿')
     # 总件数format
-    formWigdet.plateFund_count_number.setText(f'一共 {count} 件数据')
+    formWigdet.plateFund_count_number.setText(f'共 {count} 条')
     # data 不显示
     formWigdet.plateFund_showStockTable.setVisible(enableFlag)
-
-# 悬浮提示
-def setQStandardItem(text, index):
-    # 主力B(净额)formate
-    if index in [5]:
-        if not (text.endswith('亿') or text.endswith('万') or text.endswith('元')):
-            text = amountUnitEdit(text)
-    item = QStandardItem(text)
-    item.setToolTip(text)
-    return item
 
 # 条形图数值转换
 def convert_unit(value):
     return f'{round(str_to_float(value) / 100000000, 2):.2f}'
 
-# 净额数据单位编辑
-def amountUnitEdit(strValue):
-    # 例子：620811552.0 => 亿
-    #      76256208.0 => 万
-    #      66343.0 => 万
-    try:
-        strValue = str(int(strValue))
-        # 长度为9的情况，可以转换成亿为单位
-        if (len(strValue) >= 9):
-            return f'{round(str_to_float(strValue) / 100000000, 2):.2f}亿'
-        # 长度为5的情况，可以转换成万为单位
-        elif (len(strValue) >= 5):
-            return f'{round(str_to_float(strValue) / 10000, 2):.2f}万'
-        else:
-            return f'{str_to_float(strValue)}元'
-    except Exception:
-        return '0元'
-
-# str转float
-def str_to_float(str):
-    result = float(0)
-    try:
-        result = float(str)
-    except Exception as e:
-        pass
-    return result
-
 # 主力资金Tab--数据显示设定
 def setingPlateFundTable(tableView):
     # 统一样式表设置
-    style_sheet = f"""
-            /* 表格主体样式 */
-            QTableView {{
-                border: 1px solid #d0d0d0;
-                gridline-color: #e0e0e0;
-                alternate-background-color: #f8f8f8;
-                selection-background-color: #2a82da;
+    style_sheet = """
+            QTableView {
+                border: none;
+                alternate-background-color: #f4f6f9;
+                selection-background-color: #1967c2;
                 selection-color: white;
-            }}
-
-            /* 表头样式 */
-            QHeaderView::section {{
-                background-color: #f0f0f0;
-                border: 1px solid #c0c0c0;
-                padding: 2px;
+            }
+            /* ========== 顶部水平表头（列标题，保留原有样式不变） ========== */
+            QHeaderView::section:horizontal {
+                background-color: #dce3ec;
+                border: none;
+                padding: 1px;
                 font-weight: bold;
-            }}
+                color: #111111;
+            }
 
-            /* 单元格悬停效果 */
-            QTableView::item:hover {{
-                background-color: #ddeeff;
-            }}
+            QHeaderView::section:horizontal:hover {
+                background-color: #c8d2df;
+            }
 
-            /* 选中行样式 */
-            QTableView::item:selected {{
-                background-color: #2a82da;
+            QHeaderView::section:horizontal:selected {
+                color: #dd2222;
+            }
+            /* ========== 垂直表头【行号列：清除全部样式】 ========== */
+            QHeaderView::section:vertical {
+                background-color: transparent;
+                border: none;
+                padding: 0px;
+                font-weight: normal;
+                color: #444444;
+                min-width:45px;
+            }
+
+            QHeaderView::section:vertical:hover {
+                background-color: transparent;
+            }
+
+            QTableView::item:hover {
+                background-color: #d7e6f8;
+            }
+
+            QTableView::item:selected {
+                background-color: #1967c2;
                 color: white;
-            }}
+            }
+            /* 左上角角落按钮，也跟着行号一起透明，统一观感 */
+            QTableCornerButton::section {
+                border: none;
+                background-color: transparent;
+            }
         """
     tableView.setStyleSheet(style_sheet)
+
+    # ========= 【重点修改这里】只初次替换一次垂直表头，不要重复新建 =====================================
+    vh = tableView.verticalHeader()
+    if not isinstance(vh, CustomVerticalHeader):
+        # 只有原生表头的时候，才替换一次
+        new_vh = CustomVerticalHeader(tableView)
+        tableView.setVerticalHeader(new_vh)
+        # 绑定点击事件，只绑定一次
+        from PyQt6.QtCore import QItemSelectionModel
+        new_vh.sectionClicked.connect(lambda row: tableView.selectionModel().select(
+            tableView.model().index(row, 0),
+            QItemSelectionModel.SelectionFlag.Rows | QItemSelectionModel.SelectionFlag.ClearAndSelect
+        ))
+    # ==========================================================================================
+
+    # 去掉网格线
+    tableView.setShowGrid(False)
+    # 设置行交替
+    tableView.setAlternatingRowColors(True)
 
     # 设置样式表添加边框
     tableView.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)  # 禁止调整行高
@@ -651,16 +697,11 @@ def setingPlateFundTable(tableView):
     tableView.setColumnWidth(10, 90)
     tableView.setColumnWidth(11, 96)
     tableView.setColumnWidth(12, 90)
-    tableView.setColumnWidth(13, 80)
+    tableView.setColumnWidth(13, 64)
     tableView.setColumnWidth(14, 85)
     tableView.setColumnWidth(15, 80)
     tableView.setColumnWidth(16, 76)
-    # 统计行数
-    rowCount = tableView.model().rowCount()
-    if rowCount < 10:
-        tableView.setColumnWidth(17, 72)
-    else:
-        tableView.setColumnWidth(17, 65)
+    tableView.setColumnWidth(17, 65)
 
     # 第19列隐藏 机构数据采集日期
     tableView.setColumnHidden(18, True)
@@ -669,10 +710,10 @@ def setingPlateFundTable(tableView):
     tableView.setSortingEnabled(True)
     # 设置表格为整行选择 QAbstractItemView.SelectionBehavior(1) 单元格选中：QAbstractItemView.SelectionBehavior(0) 列选中：QAbstractItemView.SelectionBehavior(2)
     tableView.setSelectionBehavior(QAbstractItemView.SelectionBehavior(1))
+
     # 禁止列宽调整
     tableView.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
     tableView.horizontalHeader().setSectionsMovable(False)
-
     # 获取列宽 用来手动调节每列列宽
     # tableView.horizontalHeader().sectionResized.connect(
     #     lambda index, old_size, new_size: print(f"列{index}宽度变为{new_size}"))
