@@ -445,7 +445,7 @@ def getIncreaseFiveData(windows, formWigdet):
         formWigdet.lncrease_pageNo.setText('')
 
     # 总件数format
-    formWigdet.lncrease_count_number.setText(f'一共 {count} 件数据')
+    formWigdet.lncrease_count_number.setText(f'共 {count} 条')
     # data 不显示
     formWigdet.lncrease_showStockTable.setVisible(showCombox)
     # 交易日期

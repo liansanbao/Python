@@ -36,7 +36,7 @@ def noticesInitContent(windows, formWidget):
     formWidget.notice_stockNo.setNumberWithRange(6)
     formWidget.notice_stockName.setText('')
     # 总件数format
-    formWidget.notice_count_number.setText(f'一共 0 件数据')
+    formWidget.notice_count_number.setText(f'共 0 条')
     # browser窗口
     formWidget.stockInfoBrowser = None
 
@@ -275,7 +275,7 @@ def getNoticeData(windows, formWidget, optionType):
     windows.showNoticeData = NoticeInfoModel.getNoticeInfoData(noticsInfoCondition)
 
     # 总件数format
-    formWidget.notice_count_number.setText(f'一共 {len(windows.showNoticeData)} 件数据')
+    formWidget.notice_count_number.setText(f'共 {len(windows.showNoticeData)} 条')
 
 # 事件绑定 -- 清除按钮事件
 def AddClickedNoticClear(windows, formWidget):
