@@ -5,6 +5,7 @@
 # @Version: V 1.0
 # @File : StockInfoAction.py
 # @desc :涨停板Tab数据处理
+# @uptime: 2026/11/21 12:44
 # 禁用metrics收集
 import os
 from functools import partial
@@ -19,8 +20,10 @@ from WLW.StockBase import DateTimeUtils
 from WLW.StockBase.DateTimeUtils import get_quarter_dates
 from WLW.Tools.CommonUtils import setQStandardItem
 from WLW.action import CapitalAction
+from WLW.action.CustomVerticalHeader import CustomVerticalHeader
 from WLW.action.MultiDailySortProxyModel import CustomProxyModel
 from WLW.action.RowMenuAction import create_menu
+# from WLW.action.StockColorDelegate import StockColorDelegate # 单元格字体设定
 from WLW.model import StockInfoModel
 from WLW.model.StockInfoCondition import StockInfoCondition
 from WLW.Tools.LoggingEx import logger
@@ -193,14 +196,43 @@ def showTableData(data, windows, formWigdet):
     windows.stockModel = QStandardItemModel(0, 19)
     # 创建行标题
     windows.stockModel.setHorizontalHeaderLabels(
-        ['交易日期', '所属行业', '股票No', '名称', '涨跌幅(%)', '最新价(元)', '连板数', '炸板次数', '风险种类', '游资',
-         '成交额(亿)',
-         '换手率(%)', 'F封板时间', 'L封板时间', '封板资金', '涨停统计', '涨停主题', '涨停原因', '机构持股数量', 'hidden'])
+        ['交易日期', '所属行业', '股票No', '名称', '涨跌幅', '最新价', '连板数', '炸板次数', '风险种类', '游资',
+         '成交额', '换手率', 'F封板时间', 'L封板时间', '封板资金', '涨停统计', '涨停主题', '涨停原因', '机构持股数量', 'hidden'])
     # 设定项目值显示
     showHeaderLables = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     if data['data']:
         for row, item in enumerate(data['data']):
-            windows.stockModel.appendRow([setQStandardItem(str(item[value]), str(item[value])) for value in showHeaderLables])
+            # windows.stockModel.appendRow([setQStandardItem(str(item[value]), str(item[value])) for value in showHeaderLables])
+            row_items = []
+            for col_idx, key in enumerate(showHeaderLables):
+                cell_text = str(item[key])
+                std_item = setQStandardItem(cell_text, cell_text)
+                # ========== 文字居中 ==========
+                std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                # 预计算颜色
+                if col_idx in (2, 3):
+                    # 股票代码、名称蓝色
+                    std_item.setForeground(QColor("blue"))
+                elif col_idx == 4:  # 涨跌幅
+                    try:
+                        val = float(cell_text.replace("%", "").replace(",", ""))
+                        if val >= 0:
+                            std_item.setForeground(QColor("red"))
+                        else:
+                            std_item.setForeground(QColor("#009455"))
+                    except:
+                        pass
+                elif col_idx == 5:  # 最新价
+                    std_item.setForeground(QColor("red"))
+                # ✅ 加粗：F封板时间、L封板时间
+                elif col_idx in (12, 13):
+                    bold_font = QFont()
+                    bold_font.setBold(True)
+                    std_item.setFont(bold_font)
+
+                row_items.append(std_item)
+            windows.stockModel.appendRow(row_items)
     # 页码格式化
     formWigdet.plateStockNo.setText(f' 第 {data["current_page"]} 页 ')
     if data["current_page"] == 1:
@@ -224,6 +256,16 @@ def showTableData(data, windows, formWigdet):
     customSortModel = CustomProxyModel()
     customSortModel.setSourceModel(windows.stockModel)
     formWigdet.showStockTable.setModel(customSortModel)
+
+    # ===================== 新增：连续行号 =======================================================
+    page_no = data["current_page"]
+    page_size = data["page_size"]
+    offset = (page_no - 1) * page_size
+    v_header = formWigdet.showStockTable.verticalHeader()
+    if hasattr(v_header, "setStartOffset"):
+        logger.info(f"page_no: {page_no}, page_size: {page_size}, offset: {offset}")
+        v_header.setStartOffset(offset)
+    # ==========================================================================================
 
 # 分页处理
 def get_page(cached_data, page: int, page_size: int) -> Dict[str, Any]:
@@ -368,7 +410,7 @@ def getStockData(windows, formWidget):
         formWidget.plateStockNo.setText('')
 
     # 总件数format
-    formWidget.count_number.setText(f'一共 {count} 件数据')
+    formWidget.count_number.setText(f'共 {count} 条')
     formWidget.stockDialog.setEnabled(enableFlag)
     # data 不显示
     formWidget.showStockTable.setVisible(enableFlag)
@@ -376,36 +418,71 @@ def getStockData(windows, formWidget):
 # 涨停板Tab--数据显示设定
 def setingStockTable(tableView):
     # 统一样式表设置
-    style_sheet = f"""
-        /* 表格主体样式 */
-        QTableView {{
-            border: 1px solid #d0d0d0;
-            gridline-color: #e0e0e0;
-            alternate-background-color: #f8f8f8;
-            selection-background-color: #2a82da;
+    style_sheet = """
+        QTableView {
+            border: none;
+            alternate-background-color: #f4f6f9;
+            selection-background-color: #1967c2;
             selection-color: white;
-        }}
-
-        /* 表头样式 */
-        QHeaderView::section {{
-            background-color: #f0f0f0;
-            border: 1px solid #c0c0c0;
+        }
+        /* ========== 顶部水平表头（列标题，保留原有样式不变） ========== */
+        QHeaderView::section:horizontal {
+            background-color: #dce3ec;
+            border: none;
             padding: 1px;
             font-weight: bold;
-        }}
-
-        /* 单元格悬停效果 */
-        QTableView::item:hover {{
-            background-color: #ddeeff;
-        }}
-
-        /* 选中行样式 */
-        QTableView::item:selected {{
-            background-color: #2a82da;
+            color: #111111;
+        }
+    
+        QHeaderView::section:horizontal:hover {
+            background-color: #c8d2df;
+        }
+    
+        QHeaderView::section:horizontal:selected {
+            color: #dd2222;
+        }
+        /* ========== 垂直表头【行号列：清除全部样式】 ========== */
+        QHeaderView::section:vertical {
+            background-color: transparent;
+            border: none;
+            padding: 0px;
+            font-weight: normal;
+            color: #444444;
+        }
+    
+        QHeaderView::section:vertical:hover {
+            background-color: transparent;
+        }
+    
+        QTableView::item:hover {
+            background-color: #d7e6f8;
+        }
+    
+        QTableView::item:selected {
+            background-color: #1967c2;
             color: white;
-        }}
+        }
+        /* 左上角角落按钮，也跟着行号一起透明，统一观感 */
+        QTableCornerButton::section {
+            border: none;
+            background-color: transparent;
+        }
     """
     tableView.setStyleSheet(style_sheet)
+
+    # ========= 【重点修改这里】只初次替换一次垂直表头，不要重复新建 =====================================
+    vh = tableView.verticalHeader()
+    if not isinstance(vh, CustomVerticalHeader):
+        # 只有原生表头的时候，才替换一次
+        new_vh = CustomVerticalHeader(tableView)
+        tableView.setVerticalHeader(new_vh)
+        # 绑定点击事件，只绑定一次
+        from PyQt6.QtCore import QItemSelectionModel
+        new_vh.sectionClicked.connect(lambda row: tableView.selectionModel().select(
+            tableView.model().index(row, 0),
+            QItemSelectionModel.SelectionFlag.Rows | QItemSelectionModel.SelectionFlag.ClearAndSelect
+        ))
+    # ==========================================================================================
 
     # 设置样式表添加边框
     tableView.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)  # 禁止调整行高
@@ -419,9 +496,11 @@ def setingStockTable(tableView):
     # tableView.verticalHeader().setDefaultAlignment(Qt.AlignmentFlag.AlignCenter)  # 设置行头文本居中显示（可选）
     # 列设置保持可调整（默认状态）
     # tableView.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
-    # 设置行交替
-    # tableView.setAlternatingRowColors(True)
 
+    # 去掉网格线
+    tableView.setShowGrid(False)
+    # 设置行交替
+    tableView.setAlternatingRowColors(True)
     # 禁止编辑
     tableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
@@ -462,6 +541,10 @@ def setingStockTable(tableView):
     # 禁止列宽调整
     tableView.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
     tableView.horizontalHeader().setSectionsMovable(False)
+
+    # 替换你原来的 RowLineDelegate，换成这个StockColorDelegate 内容字体样式处理 此方案搁置===============
+    # tableView.setItemDelegate(StockColorDelegate(tableView))
+    # ==========================================================================================
 
     # 获取列宽 用来手动调节每列列宽
     # tableView.horizontalHeader().sectionResized.connect(
