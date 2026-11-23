@@ -19,7 +19,7 @@ from PyQt6.QtCore import QThread, pyqtSignal, QSize
 from WLW.Tools.LoggingEx import logger
 
 # 软件版本
-CURRENT_VERSION=5.3
+CURRENT_VERSION=5.4
 
 # 下载
 class DownloadThread(QThread):
