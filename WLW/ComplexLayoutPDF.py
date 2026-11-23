@@ -183,11 +183,11 @@ class ComplexLayoutPDF:
         # 数据排版
         if self.pdfData:
             for sshy, values in enumerate(self.pdfData):
-                listSize = len(self.pdfData[values])
+                # listSize = len(self.pdfData[values])
                 # WLW时，出力涨停在2件以上的数据
-                if self.passKey == 'WLW':
-                    if listSize == 2:
-                        continue
+                # if self.passKey == 'WLW':
+                #     if listSize == 2:
+                #         continue
 
                 self.nextPageEdit(values)
 

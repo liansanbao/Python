@@ -86,11 +86,12 @@ class Ui_mainCapitalDialog(object):
 "    }")
         self.allSshyCharts.setObjectName("allSshyCharts")
         self.nav_option = QtWidgets.QLabel(parent=mainCapitalDialog)
-        self.nav_option.setGeometry(QtCore.QRect(20, 770, 300, 26))
+        self.nav_option.setGeometry(QtCore.QRect(159, 770, 761, 26))
         self.nav_option.setText("")
+        self.nav_option.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByKeyboard|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.nav_option.setObjectName("nav_option")
         self.showType = QtWidgets.QComboBox(parent=mainCapitalDialog)
-        self.showType.setGeometry(QtCore.QRect(320, 770, 125, 26))
+        self.showType.setGeometry(QtCore.QRect(20, 770, 125, 26))
         self.showType.setObjectName("showType")
         self.printDialog = QtWidgets.QPushButton(parent=mainCapitalDialog)
         self.printDialog.setGeometry(QtCore.QRect(1150, 766, 95, 30))
@@ -122,7 +123,7 @@ class Ui_mainCapitalDialog(object):
         self.printPreview.setObjectName("printPreview")
 
         self.retranslateUi(mainCapitalDialog)
-        self.verticalStackedWidget.setCurrentIndex(2)
+        self.verticalStackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(mainCapitalDialog)
 
     def retranslateUi(self, mainCapitalDialog):

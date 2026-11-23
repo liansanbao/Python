@@ -10,7 +10,7 @@ from functools import partial
 
 import pandas
 from PyQt6.QtCore import Qt, QUrl, QTimer
-from PyQt6.QtGui import QStandardItemModel, QStandardItem, QIcon, QPixmap
+from PyQt6.QtGui import QStandardItemModel, QStandardItem, QIcon, QPixmap, QColor, QFont
 from PyQt6.QtWidgets import QMainWindow, QAbstractItemView, QStatusBar, QTreeView
 from pyecharts.charts import Bar, Pie, Line
 from pyecharts import options as opts
@@ -96,7 +96,7 @@ def onSelectionChanged(windows, formWidget):
                 else:
                     initFrame(windows, formWidget, 'bar')
             else:
-                windows.stockDialog.nav_option.setText(f'股票名称：{windows.ChartSuoShuHangYe} No：{stockNo} ')
+                navText = f' {stockNo}  {windows.ChartSuoShuHangYe}'
                 isShowType = True
                 # 由股票No或者所属行业查询股票历史轨迹
                 index = indexes[len(indexes) - 2]
@@ -113,21 +113,27 @@ def onSelectionChanged(windows, formWidget):
                     # 数据URL显示
                     index = indexes[len(indexes) - 5]
                     stockDepthDataUrls = windows.stockDialog.mainCapitalTree.model().itemFromIndex(index).text()
+                    navText = stockDepthDataUrls
                     showWebDataUrl(windows, stockDepthDataUrls)
                 elif display_type == "F10资料":
                     # F10数据URL显示
                     index = indexes[len(indexes) - 4]
                     stockF10Urls = windows.stockDialog.mainCapitalTree.model().itemFromIndex(index).text()
+                    navText = stockF10Urls
                     showWebDataUrl(windows, stockF10Urls)
                 elif display_type == "可视化报告":
                     # 可视化报告数据URL显示
                     index = indexes[len(indexes) - 3]
                     stockReportchartUrls = windows.stockDialog.mainCapitalTree.model().itemFromIndex(index).text()
+                    navText = stockReportchartUrls
                     showWebDataUrl(windows, stockReportchartUrls)
                 elif display_type == "资金流向":
                     # 资金流向数据URL显示
                     stockReportchartUrls = f'https://data.eastmoney.com/zjlx/{stockNo}.html'
+                    navText = stockReportchartUrls
                     showWebDataUrl(windows, stockReportchartUrls)
+
+                windows.stockDialog.nav_option.setText(navText)
 
             # 图形显示格式设定: False不显示
             windows.stockDialog.showType.setEnabled(isShowType)
@@ -296,7 +302,31 @@ def historyFromStock(windows, formWidget, stockNo:str='', suoShuHangYe:str=''):
         for nomber, groupCols in sortStockNos:
              if nomber == stockNo:
                 for index in range(0, len(groupCols.values)):
-                    windows.historyMainCapitalModel.appendRow([QStandardItem(str(groupCols.values[index][value])) for value in showHeaderLables])
+                    # windows.historyMainCapitalModel.appendRow([QStandardItem(str(groupCols.values[index][value])) for value in showHeaderLables])
+                    row_items = []
+                    for col_idx in showHeaderLables:
+                        cell_text = str(groupCols.values[index][col_idx])
+                        std_item = QStandardItem(cell_text)
+                        # ========== 文字居中 ==========
+                        std_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+                        if col_idx == 4:  # 涨跌幅
+                            try:
+                                val = float(cell_text.replace("%", "").replace(",", ""))
+                                if val >= 0:
+                                    std_item.setForeground(QColor("red"))
+                                else:
+                                    std_item.setForeground(QColor("#009455"))
+                            except:
+                                pass
+                        # ✅ 加粗：F封板时间、L封板时间
+                        elif col_idx in (12, 13):
+                            bold_font = QFont()
+                            bold_font.setBold(True)
+                            std_item.setFont(bold_font)
+
+                        row_items.append(std_item)
+                    windows.historyMainCapitalModel.appendRow(row_items)
                 break
 
     windows.stockDialog.tableView.setModel(windows.historyMainCapitalModel)
@@ -331,9 +361,10 @@ def setingDialogStockTable(tableView):
     tableView.horizontalHeader().setDefaultAlignment(Qt.AlignmentFlag.AlignCenter)  # 设置列头文本居中显示（可选）
     tableView.verticalHeader().setDefaultAlignment(Qt.AlignmentFlag.AlignCenter)  # 设置行头文本居中显示（可选）
 
+    # 去掉网格线
+    tableView.setShowGrid(False)
     # 设置行交替
     tableView.setAlternatingRowColors(True)
-
     # 禁止编辑
     tableView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
